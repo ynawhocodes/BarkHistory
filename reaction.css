@@ -1,0 +1,71 @@
+.reaction-swiper {
+    height: 50px;
+    width: auto;
+    margin: 0 auto;
+    padding: 20px 0;
+}
+
+.reaction-swiper .swiper-slide-action {
+    color: gray;
+    border-radius: 50px;
+}
+
+.reaction-swiper .swiper-slide-action.action01 {
+    color: white;
+    background-color: yellow;
+    border: 0px solid black;
+}
+
+.reaction-swiper .swiper-slide-action.action02 {
+    color: white;
+    background-color: #FF5B5B;
+    border: 0px solid black;
+}
+
+.reaction-swiper .swiper-slide-action.action03 {
+    color: white;
+    background-color: #69C0FF;
+    border: 0px solid black;
+}
+
+.reaction-swiper .swiper-slide-action-active.action04 {
+    color: white;
+    background-color: rgb(6, 100, 13);
+}
+
+.reaction-swiper .swiper-slide-action-active.action05 {
+    color: white;
+    background-color: rgb(0, 110, 255);
+}
+
+.reaction-swiper .swiper-slide-action-active.action06 {
+    color: white;
+    background-color: rgb(76, 126, 160);
+}
+
+.reaction-swiper .swiper-slide-action-active.action07 {
+    color: white;
+    background-color: rgb(0, 255, 85);
+}
+
+.reaction {
+    width: 800px;
+    overflow: hidden;
+    margin-top: 50px;
+}
+
+.reaction-title {
+    width: 200px;
+    height: 50px;
+    line-height: 50px;
+    font-size: 15px;
+    text-align: center;
+    float: left;
+}
+
+.reaction-swiper {
+    width: 600px;
+    float: left;
+    margin: 0;
+    padding: 0;
+}

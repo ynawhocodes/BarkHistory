@@ -1,0 +1,46 @@
+.navigation {
+    height: 50px;
+    width: 1200px;
+    margin: 0 auto;
+    padding: 20px 0;
+}
+
+.navigation .swiper-slide {
+    color: white;
+    border-radius: 50px;
+}
+
+.navigation .swiper-slide-active.tab01 {
+    color: white;
+    background-color: rgb(255, 0, 0);
+}
+
+.navigation .swiper-slide-active.tab02 {
+    color: white;
+    background-color: rgb(94, 255, 0);
+}
+
+.navigation .swiper-slide-active.tab03 {
+    color: white;
+    background-color: violet;
+}
+
+.navigation .swiper-slide-active.tab04 {
+    color: black;
+    background-color: #8AFF53;
+}
+
+.navigation .swiper-slide-active.tab05 {
+    color: white;
+    background-color: rgb(0, 110, 255);
+}
+
+.navigation .swiper-slide-active.tab06 {
+    color: white;
+    background-color: rgb(76, 126, 160);
+}
+
+.navigation .swiper-slide-active.tab07 {
+    color: white;
+    background-color: rgb(155, 155, 155);
+}
