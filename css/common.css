@@ -92,6 +92,18 @@ video {
     vertical-align: baseline;
 }
 
+a {
+    text-decoration: none;
+    outline: none;
+    color: #fff;
+}
+
+button {
+    background-color: transparent;
+    border: 0;
+}
+
+
 /* HTML5 display-role reset for older browsers */
 article,
 aside,

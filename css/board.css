@@ -27,6 +27,7 @@ body {
 .update-header .update-title {
     font-size: 14px;
     margin-top: 15px;
+    font-weight: bold;
 }
 
 .update-header button {

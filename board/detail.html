@@ -8,7 +8,7 @@
     <title>BarkHistory - Detail page</title>
 
     <link rel="stylesheet" href="../css/common.css">
-    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/board.css">
     <link rel="stylesheet" href="../css/navigation.css">
     <link rel="stylesheet" href="../css/reaction.css">
     <link rel="stylesheet" href="../css/swiper.css">
@@ -18,25 +18,29 @@
 
 <body>
     <div class="navigation">
-        <div class="swiper mySwiper">
-            <div class="swiper-wrapper">
-                <div class="swiper-slide tab01">연애</div>
-                <div class="swiper-slide tab02">회사</div>
-                <div class="swiper-slide tab03">알바</div>
-                <div class="swiper-slide tab04">캠퍼스</div>
-                <div class="swiper-slide tab05">일상</div>
-                <div class="swiper-slide tab06">10대</div>
-                <div class="swiper-slide tab07">기타</div>
+        <div class="tab">
+            <div class="swiper mySwiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide tab04"><a href="#">캠퍼스</a></div>
+                    <div class="swiper-slide tab01"><a href="#">연애</a></div>
+                    <div class="swiper-slide tab02"><a href="#">회사</a></div>
+                    <div class="swiper-slide tab03"><a href="#">알바</a></div>
+                    <div class="swiper-slide tab05"><a href="#">일상</a></div>
+                    <div class="swiper-slide tab06"><a href="#">10대</a></div>
+                    <div class="swiper-slide tab07"><a href="#">기타</a></div>
+                </div>
             </div>
+        </div>
+        <div class="option">
+            <button type="button" onclick="alert('검색버튼 클릭')"><img src="../src/search.png" alt="검색"></button>
+            <button type="button" onclick="alert('설정 클릭')"><img src="../src/setting.png" alt="설정"></button>
         </div>
     </div>
     <div class="container">
         <div class="container-inner">
             <div class="update-header">
                 <span class="update-title">실시간 HOT</span>
-                <button>
-                    스크랩이미지
-                </button>
+                <button type="button" onclick="alert('스크랩 추가')"><img src="../src/scrap.png" alt="스크랩"></button>
             </div>
             <h2 class="title">오늘 나 실시간 강의에서 방구 뀜!</h2>
             <div class="description">
@@ -47,7 +51,7 @@
                 <div class="reaction-swiper">
                     <div class="swiper mySwiper-reaction">
                         <div class="swiper-wrapper">
-                            <div class="swiper-slide swiper-slide-action action01"></div>
+                            <div class="swiper-slide swiper-slide-action action01"><button></button></div>
                             <div class="swiper-slide swiper-slide-action action02"></div>
                             <div class="swiper-slide swiper-slide-action action03"></div>
                             <div class="swiper-slide swiper-slide-action action04"></div>
@@ -57,6 +61,8 @@
                         </div>
                     </div>
                 </div>
+                <button type="button" class="plus-icon" onclick="alert('반응 추가')"><img src="../src/plus.png"
+                        alt="반응 추가"></button>
             </div>
         </div>
     </div>
@@ -80,7 +86,7 @@
             <p>잘했어 출석한게 어디야~!!!!! 글쓴이 최고!!!!!!</p>
         </div>
     </div>
-    
+
     <!-- Swiper JS -->
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script src="../js/swiper.js"></script>

@@ -5,42 +5,58 @@
     padding: 20px 0;
 }
 
+.tab {
+    width: 1000px;
+    height: 100%;
+    float: left;
+}
+
+.option {
+    width: 170px;
+    float: left;
+    margin-left: 30px;
+}
+
+.option button {
+    margin-left: 15px;
+}
+
 .navigation .swiper-slide {
-    color: white;
     border-radius: 50px;
 }
 
 .navigation .swiper-slide-active.tab01 {
-    color: white;
-    background-color: rgb(255, 0, 0);
+    background-color: rgb(255, 0, 157);
 }
 
 .navigation .swiper-slide-active.tab02 {
-    color: white;
-    background-color: rgb(94, 255, 0);
+    background-color: rgb(200, 255, 0);
+}
+
+.navigation .swiper-slide-active.tab02 a {
+    color: black;
 }
 
 .navigation .swiper-slide-active.tab03 {
-    color: white;
-    background-color: violet;
+    background-color: rgb(255, 145, 0);
 }
 
 .navigation .swiper-slide-active.tab04 {
-    color: black;
     background-color: #8AFF53;
 }
 
+.navigation .swiper-slide-active.tab04 a {
+    color: #000;
+}
+
 .navigation .swiper-slide-active.tab05 {
-    color: white;
     background-color: rgb(0, 110, 255);
 }
 
 .navigation .swiper-slide-active.tab06 {
-    color: white;
-    background-color: rgb(76, 126, 160);
+    background-color: rgb(0, 147, 245);
 }
 
 .navigation .swiper-slide-active.tab07 {
-    color: white;
     background-color: rgb(155, 155, 155);
 }

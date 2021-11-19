@@ -51,7 +51,7 @@
 .reaction {
     width: 800px;
     overflow: hidden;
-    margin-top: 50px;
+    margin: 50px auto 0 auto;
 }
 
 .reaction-title {
@@ -64,8 +64,12 @@
 }
 
 .reaction-swiper {
-    width: 600px;
+    width: 430px;
     float: left;
     margin: 0;
     padding: 0;
+}
+
+.plus-icon {
+    margin: 9px 0 9px 50px;
 }
