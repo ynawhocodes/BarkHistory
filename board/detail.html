@@ -16,7 +16,7 @@
 </head>
 
 
-<body>
+<body class="wrap">
     <div class="navigation">
         <div class="tab">
             <div class="swiper mySwiper">
@@ -40,7 +40,7 @@
         <div class="container-inner">
             <div class="update-header">
                 <span class="update-title">실시간 HOT</span>
-                <button type="button" onclick="alert('스크랩 추가')"><img src="../src/scrap.png" alt="스크랩"></button>
+                <button id="button" onclick="alert('스크랩 추가')"><img src="../src/scrap.png" alt="스크랩"></button>
             </div>
             <h2 class="title">오늘 나 실시간 강의에서 방구 뀜!</h2>
             <div class="description">
@@ -51,20 +51,31 @@
                 <div class="reaction-swiper">
                     <div class="swiper mySwiper-reaction">
                         <div class="swiper-wrapper">
-                            <div class="swiper-slide swiper-slide-action action01"><button></button></div>
-                            <div class="swiper-slide swiper-slide-action action02"></div>
-                            <div class="swiper-slide swiper-slide-action action03"></div>
-                            <div class="swiper-slide swiper-slide-action action04"></div>
-                            <div class="swiper-slide swiper-slide-action action05"></div>
-                            <div class="swiper-slide swiper-slide-action action06"></div>
-                            <div class="swiper-slide swiper-slide-action action07"></div>
+                            <div class="swiper-slide swiper-slide-action">
+                                <button onclick="alert('이모지1을 선택하셨습니다')"><img class="emoji" src="../emoji/wtf.png"></button>
+                            </div>
+                            <div class="swiper-slide swiper-slide-action">
+                                <button onclick="alert('이모지2을 선택하셨습니다')"><img class="emoji" src="../emoji/ohno.png"></button>
+                            </div>
+                            <div class="swiper-slide swiper-slide-action">
+                                <button onclick="alert('이모지3을 선택하셨습니다')"><img class="emoji" src="../emoji/fine.png"></button>
+                            </div>
+                            <div class="swiper-slide swiper-slide-action">
+                                <button onclick="alert('이모지4을 선택하셨습니다')"><img class="emoji" src="../emoji/humm.png"></button>
+                            </div>
+                            <div class="swiper-slide swiper-slide-action">
+                                <button onclick="alert('이모지5을 선택하셨습니다')"><img class="emoji" src="../emoji/kkk.png"></button>
+                            </div>
+                            <div class="swiper-slide swiper-slide-action">
+                                <button onclick="alert('이모지6을 선택하셨습니다')"><img class="emoji" src="../emoji/what.png"></button>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <button type="button" class="plus-icon" onclick="alert('반응 추가')"><img src="../src/plus.png"
-                        alt="반응 추가"></button>
+                <button type="button" class="plus-icon" onclick="onClickPlus()"><img src="../src/plus.png"></button>
             </div>
         </div>
+
     </div>
     <div class="review-container">
         <div class="review-box review-box__yellow">
@@ -86,11 +97,21 @@
             <p>잘했어 출석한게 어디야~!!!!! 글쓴이 최고!!!!!!</p>
         </div>
     </div>
+    <div id="modal" class="reaction-modal">
+        <button onclick="alert('이모지1을 선택하셨습니다')"><img class="emoji" src="../emoji/wtf.png"></button>
+        <button onclick="alert('이모지2을 선택하셨습니다')"><img class="emoji" src="../emoji/ohno.png"></button>
+        <button onclick="alert('이모지3을 선택하셨습니다')"><img class="emoji" src="../emoji/fine.png"></button>
+        <button onclick="alert('이모지4을 선택하셨습니다')"><img class="emoji" src="../emoji/humm.png"></button>
+        <button onclick="alert('이모지5을 선택하셨습니다')"><img class="emoji" src="../emoji/kkk.png"></button>
+        <button onclick="alert('이모지6을 선택하셨습니다')"><img class="emoji" src="../emoji/what.png"></button>
+        <button type="button" class="btn-close" onclick="onClickClose()">완료</button>
+    </div>
 
     <!-- Swiper JS -->
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script src="../js/swiper.js"></script>
     <!-- Initialize Swiper -->
+    <script src="../js/reaction.js"></script>
 
 </body>
 
