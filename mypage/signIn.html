@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BarkHistory - Sign in page</title>
+
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/signIn.css">
+    <link rel="stylesheet" href="../css/navigation.css">
+    <link rel="stylesheet" href="../css/reaction.css">
+    <link rel="stylesheet" href="../css/swiper.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+</head>
+
+
+<body class="wrap">
+    <div class="navigation">
+        <div class="tab">
+            <div class="swiper mySwiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide tab04"><a href="#">캠퍼스</a></div>
+                    <div class="swiper-slide tab01"><a href="#">연애</a></div>
+                    <div class="swiper-slide tab02"><a href="#">회사</a></div>
+                    <div class="swiper-slide tab03"><a href="#">알바</a></div>
+                    <div class="swiper-slide tab05"><a href="#">일상</a></div>
+                    <div class="swiper-slide tab06"><a href="#">10대</a></div>
+                    <div class="swiper-slide tab07"><a href="#">기타</a></div>
+                </div>
+            </div>
+        </div>
+        <div class="option">
+            <button type="button" onclick="alert('검색버튼 클릭')"><img src="../src/search.png" alt="검색"></button>
+            <button type="button" onclick="alert('설정 클릭')"><img src="../src/setting.png" alt="설정"></button>
+        </div>
+    </div>
+    <div class="container">
+        <div class="container-inner">
+            <div class="sign-in-input">
+                <input type="text" class="id-input" name="id-input" placeholder="아이디"> <br>
+                <input type="password" class="pw-input" name="pw-input" placeholder="비밀번호">
+            </div>
+            
+            <div class="sign-btn">
+                <button type="button" class="sign-in-btn" onclick="alert('로그인 성공')">로그인</button> <br>
+                <button type="button" class="sign-up-btn" onclick="alert('회원가입 가기')">회원가입</button>
+            </div>
+            
+        </div>
+    </div>
+
+    <!-- Swiper JS -->
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="../js/swiper.js"></script>
+    <!-- Initialize Swiper -->
+    <script src="../js/reaction.js"></script>
+
+</body>
+
+</html>
