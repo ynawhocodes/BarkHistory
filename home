@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css" />
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="./css/home.css">
+    <title>BarkHistory - home page</title>
+</head>
+
+
+<body>
+      <div class = "swiper-container">
+           <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                     <input class="tab" type="button" onclick="alert('캠퍼스 페이지')" value="캠퍼스" style="background-color:#30cff7; border:#30cff7; color:black;">
+                     <input class="tab" type="button" onclick="alert('연애 페이지')" value="연애" style="background-color:black">
+                     <input class="tab" type="button" onclick="alert('회사 페이지')" value="회사" style="background-color:black">
+                     <input class="tab" type="button" onclick="alert('알바 페이지')" value="알바" style="background-color:black">
+                     <input class="tab" type="button" onclick="alert('일상 페이지')" value="일상" style="background-color:black">
+                     <input class="tab" type="button" onclick="alert('10대 페이지')" value="10대" style="background-color:black">
+                     <input class="tab" type="button" onclick="alert('기타 페이지')" value="기타" style="background-color:black">
+                     <button class="option" type="button" onclick="alert('검색버튼 클릭')"><img src="../src/search.png" alt="검색"></button>
+                     <button class="option" type="button" onclick="alert('설정 클릭')"><img src="../src/setting.png" alt="설정"></button>
+                     <div class="update-title" >실시간 HOT</div>
+                         <input class="title" type="button" value="오늘 나 실시간 강의에서 방구 뀜!" >
+                      <div class="description">
+                          와 대박 나 출석할때 대답과 방구가 함께 나옴 똥꼬가 출석하는 줄
+                      </div>
+                      <div class="reaction">
+                          <h4 class="reaction-title">반응 +999</h4>
+                     </div>
+                     <div>
+                       <input class="tabs" type="button" onclick="alert('캠퍼스로 이동") value="캠퍼스로 이동" style="background-color:#30cff7; border:#30cff7; color:black;"></a>
+                     </div>
+                </div>
+                <div class="swiper-slide">
+                     <input class="tab" type="button" onclick="alert('캠퍼스 페이지')" value="캠퍼스" style="background-color:black">
+                     <input class="tab" type="button" onclick="alert('연애 페이지')" value="연애" style="background-color:#edf108; border:#edf108; color:black;">
+                     <input class="tab" type="button" onclick="alert('회사 페이지')" value="회사" style="background-color:black">
+                     <input class="tab" type="button" onclick="alert('알바 페이지')" value="알바" style="background-color:black">
+                     <input class="tab" type="button" onclick="alert('일상 페이지')" value="일상" style="background-color:black">
+                     <input class="tab" type="button" onclick="alert('10대 페이지')" value="10대" style="background-color:black">
+                     <input class="tab" type="button" onclick="alert('기타 페이지')" value="기타" style="background-color:black">
+                     <button class="option" type="button" onclick="alert('검색버튼 클릭')"><img src="../src/search.png" alt="검색"></button>
+                     <button class="option" type="button" onclick="alert('설정 클릭')"><img src="../src/setting.png" alt="설정"></button>
+                     <div class="update-title" >실시간 HOT</div>
+                         <input class="title" type="button" value="오늘 나 실시간 강의에서 방구 뀜!" >
+                      <div class="description">
+                          와 대박 나 출석할때 대답과 방구가 함께 나옴 똥꼬가 출석하는 줄
+                      </div>
+                      <div class="reaction">
+                          <h4 class="reaction-title">반응 +999</h4>
+                     </div>
+                     <div>
+                       <input class="tabs" type="button" onclick="alert(''연애'로 이동") value="연애로 이동" style="background-color:#edf108; border:#edf108; color:black;"></a>
+                     </div>
+                  </div>
+                  <div class="swiper-slide">
+                       <input class="tab" type="button" onclick="alert('캠퍼스 페이지')" value="캠퍼스" style="background-color:black">
+                       <input class="tab" type="button" onclick="alert('연애 페이지')" value="연애" style="background-color:black">
+                       <input class="tab" type="button" onclick="alert('회사 페이지')" value="회사" style="background-color:#4cf82a; border:#4cf82a;color:black;">
+                       <input class="tab" type="button" onclick="alert('알바 페이지')" value="알바" style="background-color:black">
+                       <input class="tab" type="button" onclick="alert('일상 페이지')" value="일상" style="background-color:black">
+                       <input class="tab" type="button" onclick="alert('10대 페이지')" value="10대" style="background-color:black">
+                       <input class="tab" type="button" onclick="alert('기타 페이지')" value="기타" style="background-color:black">
+                       <button class="option" type="button" onclick="alert('검색버튼 클릭')"><img src="../src/search.png" alt="검색"></button>
+                       <button class="option" type="button" onclick="alert('설정 클릭')"><img src="../src/setting.png" alt="설정"></button>
+                       <div class="update-title" >실시간 HOT</div>
+                           <input class="title" type="button" value="오늘 나 실시간 강의에서 방구 뀜!" >
+                        <div class="description">
+                            와 대박 나 출석할때 대답과 방구가 함께 나옴 똥꼬가 출석하는 줄
+                        </div>
+                        <div class="reaction">
+                            <h4 class="reaction-title">반응 +999</h4>
+                       </div>
+                       <div>
+                         <input class="tabs" type="button" onclick="alert(''회사'로 이동") value="회사로 이동" style="background-color:#4cf82a; border:#4cf82a;color:black;"></a>
+                       </div>
+                    </div>
+                    <div class="swiper-slide">
+                         <input class="tab" type="button" onclick="alert('캠퍼스 페이지')" value="캠퍼스" style="background-color:black">
+                         <input class="tab" type="button" onclick="alert('연애 페이지')" value="연애" style="background-color:black">
+                         <input class="tab" type="button" onclick="alert('회사 페이지')" value="회사" style="background-color:black">
+                         <input class="tab" type="button" onclick="alert('알바 페이지')" value="알바" style="background-color:orange; border:orange; color:black;">
+                         <input class="tab" type="button" onclick="alert('일상 페이지')" value="일상" style="background-color:black">
+                         <input class="tab" type="button" onclick="alert('10대 페이지')" value="10대" style="background-color:black">
+                         <input class="tab" type="button" onclick="alert('기타 페이지')" value="기타" style="background-color:black">
+                         <button class="option" type="button" onclick="alert('검색버튼 클릭')"><img src="../src/search.png" alt="검색"></button>
+                         <button class="option" type="button" onclick="alert('설정 클릭')"><img src="../src/setting.png" alt="설정"></button>
+                         <div class="update-title" >실시간 HOT</div>
+                             <input class="title" type="button" value="오늘 나 실시간 강의에서 방구 뀜!" >
+                          <div class="description">
+                              와 대박 나 출석할때 대답과 방구가 함께 나옴 똥꼬가 출석하는 줄
+                          </div>
+                          <div class="reaction">
+                              <h4 class="reaction-title">반응 +999</h4>
+                         </div>
+                         <div>
+                           <input class="tabs" type="button" onclick="alert('알바로 이동") value="알바로 이동" style="background-color:orange; border:orange; color:black;"></a>
+                         </div>
+                      </div>
+                      <div class="swiper-slide">
+                           <input class="tab" type="button" onclick="alert('캠퍼스 페이지')" value="캠퍼스" style="background-color:black">
+                           <input class="tab" type="button" onclick="alert('연애 페이지')" value="연애" style="background-color:black">
+                           <input class="tab" type="button" onclick="alert('회사 페이지')" value="회사" style="background-color:black">
+                           <input class="tab" type="button" onclick="alert('알바 페이지')" value="알바" style="background-color:black">
+                           <input class="tab" type="button" onclick="alert('일상 페이지')" value="일상" style="background-color:#f58484; border:#f58484; color: black;">
+                           <input class="tab" type="button" onclick="alert('10대 페이지')" value="10대" style="background-color:black">
+                           <input class="tab" type="button" onclick="alert('기타 페이지')" value="기타" style="background-color:black">
+                           <button class="option" type="button" onclick="alert('검색버튼 클릭')"><img src="../src/search.png" alt="검색"></button>
+                           <button class="option" type="button" onclick="alert('설정 클릭')"><img src="../src/setting.png" alt="설정"></button>
+                           <div class="update-title" >실시간 HOT</div>
+                               <input class="title" type="button" value="오늘 나 실시간 강의에서 방구 뀜!" >
+                            <div class="description">
+                                와 대박 나 출석할때 대답과 방구가 함께 나옴 똥꼬가 출석하는 줄
+                            </div>
+                            <div class="reaction">
+                                <h4 class="reaction-title">반응 +999</h4>
+                           </div>
+                           <div>
+                             <input class="tabs" type="button" onclick="alert('일상으로 이동") value="일상으로 이동" style="background-color:#f58484; border:#f58484; color: black;"></a>
+                           </div>
+                        </div>
+
+                        <div class="swiper-slide">
+                             <input class="tab" type="button" onclick="alert('캠퍼스 페이지')" value="캠퍼스" style="background-color:black">
+                             <input class="tab" type="button" onclick="alert('연애 페이지')" value="연애" style="background-color:black">
+                             <input class="tab" type="button" onclick="alert('회사 페이지')" value="회사" style="background-color:black">
+                             <input class="tab" type="button" onclick="alert('알바 페이지')" value="알바" style="background-color:black">
+                             <input class="tab" type="button" onclick="alert('일상 페이지')" value="일상" style="background-color:black">
+                             <input class="tab" type="button" onclick="alert('10대 페이지')" value="10대" style="background-color:#8a90fd; border:#8a90fd; color:black;">
+                             <input class="tab" type="button" onclick="alert('기타 페이지')" value="기타" style="background-color:black">
+                             <button class="option" type="button" onclick="alert('검색버튼 클릭')"><img src="../src/search.png" alt="검색"></button>
+                             <button class="option" type="button" onclick="alert('설정 클릭')"><img src="../src/setting.png" alt="설정"></button>
+                             <div class="update-title" >실시간 HOT</div>
+                                 <input class="title" type="button" value="오늘 나 실시간 강의에서 방구 뀜!" >
+                              <div class="description">
+                                  와 대박 나 출석할때 대답과 방구가 함께 나옴 똥꼬가 출석하는 줄
+                              </div>
+                              <div class="reaction">
+                                  <h4 class="reaction-title">반응 +999</h4>
+                             </div>
+                             <div>
+                               <input class="tabs" type="button" onclick="alert('10대로 이동") value="10대로 이동" style="background-color:#8a90fd; border:#8a90fd; color:black;"></a>
+                             </div>
+                          </div>
+                          <div class="swiper-slide">
+                               <input class="tab" type="button" onclick="alert('캠퍼스 페이지')" value="캠퍼스" style="background-color:black">
+                               <input class="tab" type="button" onclick="alert('연애 페이지')" value="연애" style="background-color:black">
+                               <input class="tab" type="button" onclick="alert('회사 페이지')" value="회사" style="background-color:black">
+                               <input class="tab" type="button" onclick="alert('알바 페이지')" value="알바" style="background-color:black">
+                               <input class="tab" type="button" onclick="alert('일상 페이지')" value="일상" style="background-color:black">
+                               <input class="tab" type="button" onclick="alert('10대 페이지')" value="10대" style="background-color:black">
+                               <input class="tab" type="button" onclick="alert('기타 페이지')" value="기타" style="background-color:#03d8c2; border:#03d8c2; color:black;">
+                               <button class="option" type="button" onclick="alert('검색버튼 클릭')"><img src="../src/search.png" alt="검색"></button>
+                               <button class="option" type="button" onclick="alert('설정 클릭')"><img src="../src/setting.png" alt="설정"></button>
+                               <div class="update-title" >실시간 HOT</div>
+                                   <input class="title" type="button" value="오늘 나 실시간 강의에서 방구 뀜!" >
+                                <div class="description">
+                                    와 대박 나 출석할때 대답과 방구가 함께 나옴 똥꼬가 출석하는 줄
+                                </div>
+                                <div class="reaction">
+                                    <h4 class="reaction-title">반응 +999</h4>
+                               </div>
+                               <div>
+                                 <input class="tabs" type="button" onclick="alert('기타로 이동") value="기타로 이동" style="background-color:#03d8c2; border:#03d8c2; color:black;"></a>
+                               </div>
+                            </div>
+
+                      </div>
+
+                      <div class="swiper-pagination"></div>
+                      <div class="swiper-button-prev"></div>
+                      <div class="swiper-button-next"></div>
+                      <div class="swiper-scrollbar"></div>
+                </div>
+  <script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+  <script src="./js/swiper.js"></script>
+
+
+
+  </body>
+  </html>
