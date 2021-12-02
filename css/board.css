@@ -46,13 +46,13 @@ body {
     margin-top: 20px;
 }
 
-.review-container {
+.comment-container {
     margin: 0 auto;
     width: 100%;
     padding: 50px 0;
 }
 
-.review-box__yellow {
+.comment-box__yellow {
     background-color: yellow;
     width: 1080px;
     margin: 0 auto 20px auto;
@@ -60,7 +60,7 @@ body {
     border-radius: 30px;
 }
 
-.review-box__blue {
+.comment-box__blue {
     background-color: #69C0FF;
     width: 1080px;
     margin: 0 auto 20px auto;
@@ -68,7 +68,7 @@ body {
     border-radius: 30px;
 }
 
-.review-box__pink {
+.comment-box__pink {
     background-color: #FF5B5B;
     width: 1080px;
     margin: 0 auto 20px auto;
@@ -76,6 +76,6 @@ body {
     border-radius: 30px;
 }
 
-.review-box p {
+.comment-box p {
     font-size: 18px;
 }
