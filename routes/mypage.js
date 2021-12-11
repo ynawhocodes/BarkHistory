@@ -182,7 +182,8 @@ router.get('/eraser', function(request, response) {
                         <a href="/mypage/mypost">내가 쓴 글</a> <br>
                         <a href="/mypage/myscrap">내가 스크랩한 글</a> <br>
                         <a href="/mypage/eraser">지우개</a> <br> 
-                        
+                        <a href="/mypage/eraser/create">지우개 글 쓰기</a> <br>
+
                         <div class="myPost-box">
                             ${list}
                         </div>
@@ -204,7 +205,7 @@ router.get('/eraser', function(request, response) {
 });
 
 //지우개 글 상세보기
-router.get('/eraser/:pageId', function(request, response) {
+router.get('/eraser/detail/:pageId', function(request, response) {
     var filteredId = path.parse(request.params.pageId).base;
     db.query(
         'SELECT * FROM eraser WHERE eraser_id=?', [filteredId],
@@ -223,7 +224,7 @@ router.get('/eraser/:pageId', function(request, response) {
                         <a href="/mypage/mypost">내가 쓴 글</a> <br>
                         <a href="/mypage/myscrap">내가 스크랩한 글</a> <br>
                         <a href="/mypage/eraser">지우개</a> <br> 
-                        
+                        <a href="/mypage/eraser/create">지우개 글 쓰기</a> <br>
                         <div class="container">
                             <div class="eraser-title">
                                 ${result[0].eraser_title}
@@ -249,53 +250,52 @@ router.get('/eraser/:pageId', function(request, response) {
 
 });
 
-
-router.get('/signUp', function(request, response) {
-    var template = `
-    <!doctype html>
-    <html>
-        <head>
-            <title>Sign Up</title>
-            <meta charset="utf-8">
-        </head>
-        <body>
-            <form action="/auth/signUp_process" method="post">        
-                <div class="sign-up-input">
-                    <input type="text" class="name-input" name="name_input" placeholder="아이디"> <br>
-                    <input type="password" class="pw-input" name="pw_input" placeholder="비밀번호"> <br>
-                    <input type="password" class="pw-check-input" name="pw_check_input" placeholder="비밀번호 확인">
-                </div>
+//지우개 글 작성하기
+router.get('/eraser/create', function(request, response) {
+        var template = `
+        <!doctype html>
+        <html>
+            <head>
+                <title>Mypage - Info</title>
+                <meta charset="utf-8">
+            </head>
+            <body>
+                <a href="/mypage">정보 변경</a> <br>
+                <a href="/mypage/mypost">내가 쓴 글</a> <br>
+                <a href="/mypage/myscrap">내가 스크랩한 글</a> <br>
+                <a href="/mypage/eraser">지우개</a> <br> 
                 
-                <div class="sign-btn">
-                    <button type="submit" class="sign-up-btn">회원가입 하기</button>
-                </div>
-            </form>
-        </body>
-    </html>
-    `;
-    response.writeHead(200);
-    response.end(template);
+                <form action="/mypage/eraser/create_process" method="post">        
+                    <div class="container">
+                        <div class="eraser-title">
+                            <input type="text" class="title-input" name="title_input" size="30" placeholder="제목을 작성해주세요">
+                        </div> <br>
+                        <div class="eraser-description">
+                            <textarea cols="80" rows="11" class="description-input" name="desciption_input" 
+                            placeholder="아무도 볼 수 없는 ‘지우개’ 공간입니다.&#13;&#10;혼자 털어버리고 싶은 일이 있다면 이곳에 적어주세요.&#13;&#10;작성한 글은 3일 뒤에 사라집니다.&#13;&#10;지워지는 글과 함께 마음속에서도 털고 다음부터 잘하는걸로 해요!"></textarea>
+                        </div> <br>
+                        <button type="submit" id="button"><img src="../src/create.png" alt="글 쓰기"></button>
+                    </div>
+                </form>
+            </body>
+        </html>
+        
+        `;
+        response.writeHead(200);
+        response.end(template);
 });
 
-
-router.post('/signUp_process', function(request, response) {
+router.post('/eraser/create_process', function(request, response) {
     var post = request.body;
-    db.query(`INSERT INTO user (user_name, user_pw) VALUES(?, ?)`, [post.name_input, post.pw_input],
+    db.query(`INSERT INTO eraser (eraser_title, eraser_date, eraser_detail, user_id) VALUES(?, ?, ? ,?)`, [post.title_input, new Date(), post.desciption_input, request.session.user_id],
         function(error, result) {
             if(error) {
                 throw error;
             }
-            response.writeHead(302, {Location: '/auth/signIn'});
+            response.writeHead(302, {Location: '/mypage/eraser'});
             response.end();
         }
     );
 });
-
-router.get('/logout', function (request, response) {
-    request.session.destroy(function(err) {
-        response.redirect('/');
-    });
-});
-
 
 module.exports = router;
