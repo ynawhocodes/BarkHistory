@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var db = require('../lib/db');
 
+//정보 변경
 router.get('/', function(request, response) {
     var template = `
     <!doctype html>
@@ -11,17 +12,18 @@ router.get('/', function(request, response) {
             <meta charset="utf-8">
         </head>
         <body>
-            <form action="/auth/signIn_process" method="post">
+            <a href="/mypage">정보 변경</a> <br>
+            <a href="/mypage/mypost">내가 쓴 글</a> <br>
+            <a href="/mypage/myscrap">내가 스크랩한 글</a> <br>
+            <a href="/mypage/eraser">지우개</a> <br> 
+            <form action="/mypage/change_process" method="post">
                 <div class="container-inner">
-                    <div class="sign-in-input">
-                        <input type="text" class="name-input" name="name_input" placeholder="아이디"> <br>
-                        <input type="password" class="pw-input" name="pw_input" placeholder="비밀번호">
-                    </div>
-                    
-                    <div class="sign-btn">
-                        <button type="submit" class="sign-in-btn">로그인</button> <br>
-                        <button type="button" class="sign-up-btn">회원가입</button>
-                    </div>
+                    <span class="page-title">아이디 / 비밀번호 변경</span> <br>
+                    <div class="account-change">
+                        <input type="text" class="name-change" name="name_change" value="${request.session.user_name}">
+                        <input type="password" class="pw-change" name="pw_change" placeholder="****">
+                        <button type="submit" class="change-btn" name="change_btn">변경</button>
+                    </div>            
                 </div>
             </form>
         </body>
@@ -32,40 +34,78 @@ router.get('/', function(request, response) {
     response.end(template);
 });
 
-router.post('/signIn_process', function(request, response) {
+router.post('/change_process', function(request, response) {
     var post = request.body;
-    let pw = post.pw_input;
+    let pw = post.pw_change;
     db.query(
-        `SELECT * FROM user WHERE user_name=?`, [post.name_input],
+        'UPDATE user SET user_name=?, user_pw=? WHERE user_id=?', [post.name_change, post.pw_change, request.session.user_id],
         function(error, result) {
-            try {
-                if (!result.length) //id 입력 오류 -> catch로 이동
-                    console.log("등록된 유저 없음");
+            try { //수정 성공
+                console.log("성공");
 
-                if(result[0].user_pw === pw) { //로그인 성공
-                    console.log("성공");
+                //세션에 로그인 여부, 아이디 저장
+                request.session.is_logined = true;
+                request.session.user_name = post.name_change;
 
-                    //세션에 로그인 여부, 아이디 저장
-                    request.session.is_logined = true;
-                    request.session.user_name = result[0].user_name;
-                    request.session.user_id = result[0].user_id;
-
-                    request.session.save(function() {
-                        response.redirect('/');
-                    })
-                }
-                else { //로그인 실패
-                    console.log("실패");
-                    response.writeHead(302, {Location: '/auth/signIn'});
-                    response.end();
-                }
+                request.session.save(function() {
+                    response.redirect('/mypage');
+                })
             }
-            catch(err) {
-                response.writeHead(302, {Location: '/auth/signIn'});
+            catch(err) { //수정 실패
+                console.log("실패");
+                response.writeHead(302, {Location: '/mypage'});
                 response.end();
             }
         }
     );
+});
+
+//내가 쓴 글
+router.get('/mypost', function(request, response) {
+    var list = '<ul>';
+    db.query(
+        'SELECT * FROM post WHERE user_id=?', [request.session.user_id],
+        function(error, result) {
+            try {
+                console.log("글 목록 가져오기 성공");
+                var  i = 0;
+                while(i < result.length){
+                    list = list + `<li><a href="/?id=${result[i].post_id}">${result[i].post_title}</a></li>`;
+                    i = i+1;
+                }
+                list = list + '</ul>';
+            }
+            catch(err) {
+                console.log("실패");
+                response.writeHead(302, {Location: '/mypage'});
+                response.end();
+            }
+        }
+    );
+
+
+    var template = `
+    <!doctype html>
+    <html>
+        <head>
+            <title>Mypage - Info</title>
+            <meta charset="utf-8">
+        </head>
+        <body>
+            <a href="/mypage">정보 변경</a> <br>
+            <a href="/mypage/mypost">내가 쓴 글</a> <br>
+            <a href="/mypage/myscrap">내가 스크랩한 글</a> <br>
+            <a href="/mypage/eraser">지우개</a> <br> 
+            
+            <div class="myPost-box">
+                ${list}
+            </div>
+        </body>
+    </html>
+    
+    `;
+    response.writeHead(200);
+    response.end(template);
 });
 
 router.get('/signUp', function(request, response) {

@@ -45,7 +45,7 @@ router.post('/signIn_process', function(request, response) {
                 if(result[0].user_pw === pw) { //로그인 성공
                     console.log("성공");
 
-                    //세션에 로그인 여부, 아이디 저장
+                    //세션에 로그인 여부, 이름, 아이디 저장
                     request.session.is_logined = true;
                     request.session.user_name = result[0].user_name;
                     request.session.user_id = result[0].user_id;
