@@ -10,8 +10,7 @@ var app = http.createServer(function(request, response) {
     var pathname = url.parse(_url, true).pathname;
     if(pathname === '/') {
         member.signIn(request, response);
-    } 
-    else if(pathname === '/member/signIn') {
+    }  else if(pathname === '/member/signIn') {
         member.signIn(request, response);
     } else if(pathname === '/member/signUp') {
         member.signUp(request, response);
