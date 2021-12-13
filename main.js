@@ -1,27 +1,34 @@
-var http = require('http');
-var url = require('url');
-var qs = require('querystring');
-var db = require('./lib/db.js');
 var member = require('./lib/member.js');
+var express = require('express');
+var app = express();
+var bodyParser = require('body-parser');
+var session = require('express-session');
+var FileStore = require('session-file-store')(session);
+var indexRouter = require('./routes/index');
+var authRouter = require('./routes/auth');
+var mypageRouter = require('./routes/mypage');
 
-var app = http.createServer(function(request, response) {
-    var _url = request.url;
-    var queryData = url.parse(_url, true).query;
-    var pathname = url.parse(_url, true).pathname;
-    if(pathname === '/') {
-        member.signIn(request, response);
-    } 
-    else if(pathname === '/member/signIn') {
-        member.signIn(request, response);
-    } else if(pathname === '/member/signUp') {
-        member.signUp(request, response);
-    } else if(pathname === '/member/signIn_process') {
-        member.signIn_process(request, response);
-    } else if(pathname === '/member/signUp_process') {
-        member.signUp_process(request, response);
-    } else {
-        response.writeHead(404);
-        response.end('Not found');
-    }
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(session({
+    secret: 'cotton candy',
+    resave: false,
+    saveUninitialized: true,
+    store: new FileStore()
+}));
+
+app.use('/', indexRouter);
+app.use('/auth', authRouter);
+app.use('/mypage', mypageRouter);
+
+// app.use(function(req, res, next) {
+//     res.status(404).send('Sorry cant find that!');
+// });
+
+// app.use(function (err, req, res, next) {
+//     console.error(err.stack);
+//     res.status(500).send('Something broke!');
+// });
+
+app.listen(3000, function() {
+    console.log('success!!');
 });
-app.listen(3000);
