@@ -1,0 +1,58 @@
+body {
+    background: #fff;
+    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    color: #000;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    height: auto;
+    margin: 0 auto;
+    width: 100%;
+    padding: 4% 0 2% 0;
+}
+
+.container-inner {
+    width: 50%;
+    margin: 0 auto;
+}
+
+.page-title {
+    margin: 1.2% 0 2% 0;
+    font-size: 30px;
+    font-weight: bold;
+    color: #000;
+}
+
+.account-change {
+    width: 100%;
+    margin: 1.5% auto;
+    float: left;
+}
+
+.id-change, .pw-change {
+    width: 100%;
+    margin: 0 auto;
+    margin: 2.5% auto;
+    padding: 1.5%;
+    width: 96.5%;
+    font-size: 30px;
+    float: left;
+}
+
+.change-btn {
+    margin: 3% auto;
+    width: 100%;
+    padding: 2.5%;
+    font-size: 30px;
+    background-color: #000;
+    color: #fff;
+}
+
+.change-btn:hover {
+    background-color: #fff;
+    color: #000;
+    border: 2px solid #000;
+}

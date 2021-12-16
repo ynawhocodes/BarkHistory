@@ -7,11 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BarkHistory - Detail page</title>
 
-    <link rel="stylesheet" href="rawgit.com/ynawhocodes/BarkHistory/develop/css/common.css">
-    <link rel="stylesheet" href="rawgit.com/ynawhocodes/BarkHistory/develop/css/board.css">
-    <link rel="stylesheet" href="rawgit.com/ynawhocodes/BarkHistory/develop/css/navigation.css">
-    <link rel="stylesheet" href="rawgit.com/ynawhocodes/BarkHistory/develop/css/reaction.css">
-    <link rel="stylesheet" href="rawgit.com/ynawhocodes/BarkHistory/develop/css/swiper.css">
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/board.css">
+    <link rel="stylesheet" href="../css/navigation.css">
+    <link rel="stylesheet" href="../css/reaction.css">
+    <link rel="stylesheet" href="../css/swiper.css">
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
 </head>
 
@@ -40,6 +40,11 @@
         <div class="container-inner">
             <div class="update-header">
                 <span class="update-title">실시간 HOT</span>
+                <span class="update-header__stuff">
+                    <a href="#">수정</a>
+                    <a href="#">삭제</a>
+                    <span>스크랩 수: 0</span>
+                </span>
                 <button id="button" onclick="alert('스크랩 추가')"><img src="../src/scrap.png" alt="스크랩"></button>
             </div>
             <h2 class="title">오늘 나 실시간 강의에서 방구 뀜!</h2>
@@ -79,18 +84,36 @@
     </div>
     <div class="comment-container">
         <div class="comment-box comment-box__yellow">
-            <p>잘했어 출석한게 어디야~!!!!! 글쓴이 최고!!!!!!</p>
-        </div>
-        <div class="comment-box comment-box__yellow">
+            <div class="comment-box-top">
+                <div class="comment-box-top__info">
+                    <span>익명</span>
+                    <span>2021-05-03</span>
+                </div>
+                <div class="comment-box-top__stuff">
+                    <a href="#">수정</a>
+                    <a href="#">삭제</a>
+                </div>
+            </div>
             <p>잘했어 출석한게 어디야~!!!!! 글쓴이 최고!!!!!!</p>
         </div>
         <div class="comment-box comment-box__blue">
-            <p>잘했어 출석한게 어디야~!!!!! 글쓴이 최고!!!!!!</p>
+            <div class="comment-box-top">
+                <div class="comment-box-top__info">
+                    <span>익명</span>
+                    <span>2021-05-03</span>
+                </div>
+                <div class="comment-box-top__stuff">
+                    <a href="#">수정</a>
+                    <a href="#">삭제</a>
+                </div>
+            </div>
+            <input>
         </div>
         <div class="comment-box comment-box__blue">
             <p>잘했어 출석한게 어디야~!!!!! 글쓴이 최고!!!!!!</p>
         </div>
         <div class="comment-box comment-box__pink">
+            <p>잘했어 출석한게 어디야~!!!!! 글쓴이 최고!!!!!!</p>
             <p>잘했어 출석한게 어디야~!!!!! 글쓴이 최고!!!!!!</p>
         </div>
         <div class="comment-box comment-box__pink">
