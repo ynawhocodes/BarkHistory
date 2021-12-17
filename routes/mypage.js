@@ -62,13 +62,13 @@ router.post('/change_process', function(request, response) {
     );
 });
 
-//내가 쓴 글
+//내가 쓴 글 목록
 router.get('/mypost', function(request, response) {
     db.query(
         'SELECT * FROM post WHERE user_id=?', [request.session.user_id],
         function(error, result) {
             try {
-                console.log("글 목록 가져오기 성공");
+                console.log("내가 쓴 글 목록 가져오기 성공");
                 var list = mypage.list(result);
                 var template = `
                 <!doctype html>
@@ -103,33 +103,16 @@ router.get('/mypost', function(request, response) {
 
 });
 
-//내가 스크랩한 글 -> 에러 수정해야 함
+//내가 스크랩한 글
 router.get('/myscrap', function(request, response) {
     let list = '<ul>';
-    db.query( //첫번째 쿼리: scrap 중 본인이 스크랩한 글 찾기
-        'SELECT * FROM scrap WHERE user_id=?', [request.session.user_id],
+    db.query( //조인-scrap과 post
+        'SELECT * FROM scrap LEFT JOIN post ON scrap.post_id=post.post_id WHERE scrap.user_id=?', [request.session.user_id],
         function(error, scrapResult) {
             try {
-                var j = 0;
-                while(j < scrapResult.length) {
-                    db.query( //두번째 쿼리: post id로 post 찾기
-                        'SELECT * FROM post WHERE post_id=?', [scrapResult[j].post_id],
-                        function(error, postResult) {
-                            try {
-                                console.log("스크랩글 목록 가져오기 성공");
-                                list = mypage.scrapList(postResult);
-                                console.log(list);
-                            }
-                            catch(err) {
-                                console.log("실패");
-                            }
-                        }
-                    );
-                    j = j + 1;
-                }
-                list = list + '</ul>';
-                var template = 
-                `
+                console.log("스크랩 글 목록 가져오기 성공");
+                var list = mypage.scrapList(scrapResult);
+                var template = `
                 <!doctype html>
                 <html>
                     <head>
@@ -142,7 +125,7 @@ router.get('/myscrap', function(request, response) {
                         <a href="/mypage/myscrap">내가 스크랩한 글</a> <br>
                         <a href="/mypage/eraser">지우개</a> <br> 
                         
-                        <div class="myPost-box">
+                        <div class="myScrap-box">
                             ${list}
                         </div>
                     </body>
