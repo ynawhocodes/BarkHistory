@@ -8,16 +8,16 @@ var db = mysql.createConnection({
 
 var template = require('../lib/detailTemplate.js');
 var express = require('express');
-var app = express();
+var router = express.Router();
 var qs = require('querystring');
 
 //글 목록(test)
-app.get('/campus', function (req, res) {
+router.get('/campus', function (req, res) {
     return res.send('/campus')
 });
 
 //글 조회
-app.get('/campus/:postId', function (request, response) {
+router.get('/campus/:postId', function (request, response) {
     db.query(`SELECT * FROM post WHERE post_id=?`, [request.params.postId], function (error, post) {
         if (error) {
             console.log(error);
@@ -31,8 +31,10 @@ app.get('/campus/:postId', function (request, response) {
                     throw error3;
                 }          
                 var postControl = template.postControl(true, request.params.postId, post)          
+                console.log(commentsCount);
                 var commentList = template.commentList(comments)
                 var html = template.HTML(postControl, commentList, "", commentsCount[0].cmtcnt);
+                console.log(comments);
                 
                 return response.send(html)
             });
@@ -42,7 +44,7 @@ app.get('/campus/:postId', function (request, response) {
 
 
 //글 수정
-app.get('/campus/:postId/post_update', function (request, response) {
+router.get('/campus/:postId/post_update', function (request, response) {
     db.query(`SELECT * FROM post WHERE post_id=?`, [request.params.postId], function (error, post) {
         if (error) {
             console.log(error);
@@ -59,6 +61,7 @@ app.get('/campus/:postId/post_update', function (request, response) {
 
                 var commentList = template.commentList(comments)
                 var html = template.HTML(postControl, commentList, "", commentsCount[0].cmtcnt);
+                console.log(comments);
                     
                 return response.send(html)
             });
@@ -67,7 +70,7 @@ app.get('/campus/:postId/post_update', function (request, response) {
 });
 
 //글 수정 처리
-app.post('/campus/:postId/post_update_process', function (request, response) {
+router.post('/campus/:postId/post_update_process', function (request, response) {
     var body = '';
     request.on('data', function (data) {
         body = body + data;
@@ -85,7 +88,7 @@ app.post('/campus/:postId/post_update_process', function (request, response) {
 });
 
 //글 삭제 처리
-app.post('/campus/post_delete_process', function (request, response) {
+router.post('/campus/post_delete_process', function (request, response) {
     var body = '';
     request.on('data', function (data) {
         body = body + data;
@@ -104,7 +107,7 @@ app.post('/campus/post_delete_process', function (request, response) {
 });
 
 //댓글 생성
-app.get('/campus/:postId/comment_create', function (request, response) {
+router.get('/campus/:postId/comment_create', function (request, response) {
     db.query(`SELECT * FROM post WHERE post_id=?`, [request.params.postId], function (error, post) {
         if (error) {
             console.log(error);
@@ -144,7 +147,7 @@ app.get('/campus/:postId/comment_create', function (request, response) {
 });
 
 // 댓글 생성 처리
-app.post('/campus/:postId/comment_create_process', function (request, response) {
+router.post('/campus/:postId/comment_create_process', function (request, response) {
     var body = '';
     request.on('data', function (data) {
         body = body + data;
@@ -166,7 +169,7 @@ app.post('/campus/:postId/comment_create_process', function (request, response) 
 });
 
 //댓글 수정
-app.get('/campus/:postId/comment_update', function (request, response) {
+router.get('/campus/:postId/comment_update', function (request, response) {
     db.query(`SELECT * FROM post WHERE post_id=?`, [request.params.postId], function (error, post) {
         if (error) {
             console.log(error);
@@ -182,12 +185,6 @@ app.get('/campus/:postId/comment_update', function (request, response) {
                 var commentList = template.commentList(comments);
                 var postControl = template.postControl(true, request.params.postId, post);
 
-                console.log('1내부' + post);
-                console.log('2내부' + post[0].post_id);
-                console.log('3내부' + comments);
-                console.log('4내부' + comments[0].comment_id);
-                console.log('4내부' + comments[1].comment_id);
-
                 var commentForm = `<form action="comment_update_process" method="post">
                                     <div class="comment-box comment-box__blue">
                                         <div class="comment-box-top">
@@ -199,8 +196,8 @@ app.get('/campus/:postId/comment_update', function (request, response) {
                                                 <input type="submit" value="수정 완료">
                                             </div>
                                         </div>
-                                        <input type="hidden" name="id" value="${comments[comment_id].comment_id}">
-                                        <input name="comment" value="${comments[comment_id].comment_detail}">
+                                        <input type="hidden" name="id" value="${comments[0].comment_id}">
+                                        <input name="comment" value="${comments[0].comment_detail}">
                                     </div>
                                 </form>`
                 var html = template.HTML(postControl, commentList, commentForm, commentsCount[0].cmtcnt);
@@ -209,9 +206,7 @@ app.get('/campus/:postId/comment_update', function (request, response) {
         });
     });
 });
-
-//댓글 수정 처리
-app.post('/campus/:postId/comment_update_process', function (request, response) {
+router.post('/campus/:postId/comment_update_process', function (request, response) {
     var body = '';
     request.on('data', function (data) {
         body = body + data;
@@ -219,7 +214,7 @@ app.post('/campus/:postId/comment_update_process', function (request, response) 
     request.on('end', function () {
         var comment = qs.parse(body);
         db.query(`UPDATE comment SET comment_detail=?, emotion_id=? WHERE comment_id=?`,
-            [comment.comment_detail, 1, comment.comment_id],
+            [comment.comment, 1, comment.comment_id],
             function (error, result) {
                 if (error) {
                     throw error;
@@ -230,35 +225,23 @@ app.post('/campus/:postId/comment_update_process', function (request, response) 
         );
     });
 });
-
-//댓글 삭제 처리
-app.post('/campus/comment_delete_process', function (request, response) {
+router.post('/campus/comment_update_process', function (request, response) {
     var body = '';
     request.on('data', function (data) {
         body = body + data;
     });
     request.on('end', function () {
         var comment = qs.parse(body);
-        var postId = request.params.postId;
 
        db.query(`DELETE FROM comment WHERE comment_id=?`, [comment.comment_id], function (error, result) {
             if (error) {
                 throw error;
             }
-            response.redirect(`/campus/${postId}`);
+            response.redirect(`/campus/${request.params.postId}`);
             response.end();
         });
     });
 });
-app.use(function(req, res, next) {
-    res.status(404).send('Sorry cant find that!');
-});
 
-app.use(function (err, req, res, next) {
-    console.error(err.stack)
-    res.status(500).send('Something broke!')
-});
 
-app.listen(80, function() {
-    console.log('listening on port 80!')
-});
+module.exports = router;
