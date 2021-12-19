@@ -98,6 +98,13 @@ div.comment-box-top__stuff > a:nth-child(2) {
     font-size: 18px;
 }
 
+.comment-box {
+    width: 1080px;
+    margin: 0 auto 20px auto;
+    padding: 70px;
+    border-radius: 30px;
+    border: 1px solid black;
+}
 body > div.comment-container > div > input{
     width: 95%;
     border: none;
