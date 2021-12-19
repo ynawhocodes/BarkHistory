@@ -13,7 +13,7 @@ router.get('/', function(request, response) {
 });
 
 
-router.get('detail/searchString', async function(request, response, next) {
+router.get('/searchString', async function(request, response, next) {
     console.log('b');
     let list_1=[];
     try{
@@ -29,7 +29,7 @@ router.get('detail/searchString', async function(request, response, next) {
     response.render('search',{'list_1':list_1});
 });
 
-router.post('/d', async(request, response, next) => {
+router.post('/', async(request, response, next) => {
     
         console.log('c');
         const { searchString } = request.body;
