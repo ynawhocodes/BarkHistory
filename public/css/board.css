@@ -1,0 +1,81 @@
+body {
+    background: #fff;
+    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    color: #000;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    height: auto;
+    margin: 0 auto;
+    width: 100%;
+    padding: 50px 0;
+    box-shadow: 0px 30px 20px -10px rgba(0, 0, 0, 0.137);
+}
+
+.container-inner {
+    width: 1080px;
+    margin: 0 auto;
+}
+
+.update-header {
+    position: relative;
+}
+
+.update-header .update-title {
+    font-size: 14px;
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+.update-header button {
+    position: absolute;
+    right: 0;
+}
+
+.title {
+    font-size: 36px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.description {
+    font-size: 18px;
+    margin-top: 20px;
+}
+
+.review-container {
+    margin: 0 auto;
+    width: 100%;
+    padding: 50px 0;
+}
+
+.review-box__yellow {
+    background-color: yellow;
+    width: 1080px;
+    margin: 0 auto 20px auto;
+    padding: 70px;
+    border-radius: 30px;
+}
+
+.review-box__blue {
+    background-color: #69C0FF;
+    width: 1080px;
+    margin: 0 auto 20px auto;
+    padding: 70px;
+    border-radius: 30px;
+}
+
+.review-box__pink {
+    background-color: #FF5B5B;
+    width: 1080px;
+    margin: 0 auto 20px auto;
+    padding: 70px;
+    border-radius: 30px;
+}
+
+.review-box p {
+    font-size: 18px;
+}

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BarkHistory - Post_List</title>
+
+    <link rel="stylesheet" href="\css\common.css">
+    <link rel="stylesheet" href="\css\write.css">
+    <link rel="stylesheet" href="\css\navigation.css">
+    <link rel="stylesheet" href="\css\reaction.css">
+    <link rel="stylesheet" href="\css\swiper.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+</head>
+
+<body>
+    <div class="navigation">
+        <div class="tab">
+            <div class="swiper mySwiper">
+                <div class="swiper-wrapper">
+                    <div class ="btn_1" OnClick="location.href='/board/1'">연애</div>
+                    <div class ="btn_2" OnClick="location.href='/board/2'">10대</div>
+                    <div class ="btn_3" OnClick="location.href='/board/3'">캠퍼스</div>
+                    <div class ="btn_4" OnClick="location.href='/board/4'">회사</div>
+                    <div class ="btn_5" OnClick="location.href='/board/5'">알바</div>
+                       
+                </div>
+            </div>
+        </div>
+        <div class="option">
+            <button type="button" onclick="alert('검색버튼 클릭')"><img src="../src/search.png" alt="검색"></button>
+            <button type="button" onclick="alert('설정 클릭')"><img src="../src/setting.png" alt="설정"></button>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="container-inner">
+            <% cate.forEach((data, board) => { %>
+                <form action="/board/"<%=data.category_id%> method="get">
+                <input type="hidden" ><br>
+            <span style=" font-size:2.5em; font-weight: bold"><%=data.category_name%>,</span>&nbsp;
+            <span style=" font-size:2.5em; font-weight: bold"> <%=data.category_detail%></span>
+            <a href="/board/create/"><button id="button" onclick="alert('글 쓰기')"><img src="../src/create.png" alt="글 쓰기"></button></a>
+            <%})%>
+            </form>
+        </div>
+        <div class="hot">
+            <div class ="hot-post">HOT!!</div>
+            <%hot_post.forEach((rows, board) => { %>
+            <div class ="hot-post-title"><%=rows.post_title%></div>
+            <div class ="hot-post-detail"><%=rows.post_detail%></div>
+            <%})%>
+        </div>
+    </div>
+    <div class="board-container">
+        <div class="board-box">
+            <a href="#">
+                <%boardDB_results.forEach((row, board) => { %>
+                <div class="board-date"><%=row.post_date%></div>
+                <div class="board-userName"><%=row.user_name%></div>
+                <div class="board-title"><%=row.post_title%></div>
+                <div class="board-emotion-num"><%=row.post_emotion_number%></div>
+                <div class="board-description"> <%=row.post_detail%></div>
+                <hr>
+                <% }) %>
+            
+            </a>
+            
+        </div>
+       
+    </div>
+    <!-- Swiper JS -->
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="../js/swiper.js"></script>
+    <!-- Initialize Swiper -->
+    <script src="../js/reaction.js"></script>
+
+</body>
+
+</html>
