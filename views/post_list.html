@@ -20,12 +20,12 @@
         <div class="tab">
             <div class="swiper mySwiper">
                 <div class="swiper-wrapper">
-                    <div class ="btn_1" OnClick="location.href='/board/1'">연애</div>
-                    <div class ="btn_2" OnClick="location.href='/board/2'">10대</div>
-                    <div class ="btn_3" OnClick="location.href='/board/3'">캠퍼스</div>
-                    <div class ="btn_4" OnClick="location.href='/board/4'">회사</div>
-                    <div class ="btn_5" OnClick="location.href='/board/5'">알바</div>
-                       
+                    <div class="btn_1" OnClick="location.href='/board/1'">연애</div>
+                    <div class="btn_2" OnClick="location.href='/board/2'">10대</div>
+                    <div class="btn_3" OnClick="location.href='/board/3'">캠퍼스</div>
+                    <div class="btn_4" OnClick="location.href='/board/4'">회사</div>
+                    <div class="btn_5" OnClick="location.href='/board/5'">알바</div>
+
                 </div>
             </div>
         </div>
@@ -38,19 +38,19 @@
     <div class="container">
         <div class="container-inner">
             <% cate.forEach((data, board) => { %>
-                <form action="/board/"<%=data.category_id%> method="get">
-                <input type="hidden" ><br>
-            <span style=" font-size:2.5em; font-weight: bold"><%=data.category_name%>,</span>&nbsp;
-            <span style=" font-size:2.5em; font-weight: bold"> <%=data.category_detail%></span>
-            <a href="/board/create/"><button id="button" onclick="alert('글 쓰기')"><img src="../src/create.png" alt="글 쓰기"></button></a>
-            <%})%>
+            <form action="/board/create" method="get">
+                <input type="hidden"><br>
+                <span style=" font-size:2.5em; font-weight: bold"><%=data.category_name%>,</span>&nbsp;
+                <span style=" font-size:2.5em; font-weight: bold"> <%=data.category_detail%></span>
+                <button id="button" ><img src="../src/create.png" alt="글 쓰기"></button>
+                <%})%>
             </form>
         </div>
         <div class="hot">
-            <div class ="hot-post">HOT!!</div>
+            <div class="hot-post">HOT!!</div>
             <%hot_post.forEach((rows, board) => { %>
-            <div class ="hot-post-title"><%=rows.post_title%></div>
-            <div class ="hot-post-detail"><%=rows.post_detail%></div>
+            <div class="hot-post-title"><%=hot_post[0].post_title%></div>
+            <div class="hot-post-detail"><%=hot_post[0].post_detail%></div>
             <%})%>
         </div>
     </div>
@@ -65,11 +65,11 @@
                 <div class="board-description"> <%=row.post_detail%></div>
                 <hr>
                 <% }) %>
-            
+
             </a>
-            
+
         </div>
-       
+
     </div>
     <!-- Swiper JS -->
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
