@@ -1,3 +1,4 @@
+var db = require('../lib/db');
 var template = require('../lib/detailTemplate.js');
 var express = require('express');
 var app = express();
