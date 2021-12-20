@@ -8,16 +8,12 @@ var db = mysql.createConnection({
 
 var template = require('../lib/detailTemplate.js');
 var express = require('express');
+var app = express();
 var router = express.Router();
 var qs = require('querystring');
 
-//글 목록(test)
-router.get('/campus', function (req, res) {
-    return res.send('/campus')
-});
-
 //글 조회
-router.get('/campus/:postId', function (request, response) {
+router.get('/:postId', function (request, response) {
     db.query(`SELECT * FROM post WHERE post_id=?`, [request.params.postId], function (error, post) {
         if (error) {
             console.log(error);
@@ -31,10 +27,9 @@ router.get('/campus/:postId', function (request, response) {
                     throw error3;
                 }          
                 var postControl = template.postControl(true, request.params.postId, post)          
-                console.log(commentsCount);
                 var commentList = template.commentList(comments)
-                var html = template.HTML(postControl, commentList, "", commentsCount[0].cmtcnt);
-                console.log(comments);
+                var reactionModal = template.reactionModal(request.params.postId)
+                var html = template.HTML(postControl, commentList, "", commentsCount[0].cmtcnt, reactionModal);
                 
                 return response.send(html)
             });
@@ -44,7 +39,7 @@ router.get('/campus/:postId', function (request, response) {
 
 
 //글 수정
-router.get('/campus/:postId/post_update', function (request, response) {
+router.get('/:postId/post_update', function (request, response) {
     db.query(`SELECT * FROM post WHERE post_id=?`, [request.params.postId], function (error, post) {
         if (error) {
             console.log(error);
@@ -60,8 +55,8 @@ router.get('/campus/:postId/post_update', function (request, response) {
                 var postControl = template.postFormControl(true, post);
 
                 var commentList = template.commentList(comments)
-                var html = template.HTML(postControl, commentList, "", commentsCount[0].cmtcnt);
-                console.log(comments);
+                var reactionModal = template.reactionModal(request.params.postId)
+                var html = template.HTML(postControl, commentList, "", commentsCount[0].cmtcnt, reactionModal);
                     
                 return response.send(html)
             });
@@ -70,7 +65,7 @@ router.get('/campus/:postId/post_update', function (request, response) {
 });
 
 //글 수정 처리
-router.post('/campus/:postId/post_update_process', function (request, response) {
+router.post('/:postId/post_update_process', function (request, response) {
     var body = '';
     request.on('data', function (data) {
         body = body + data;
@@ -81,14 +76,14 @@ router.post('/campus/:postId/post_update_process', function (request, response) 
         var description = post.post_detail;
 
         db.query(`UPDATE post SET post_title=?, post_detail=? WHERE post_id=?`, [title, description, request.params.postId], function (error, result) {
-            response.redirect(`/campus/${request.params.postId}`);
+            response.redirect(`${request.baseUrl}/${request.params.postId}`);
             response.end();
         });
     });
 });
 
 //글 삭제 처리
-router.post('/campus/post_delete_process', function (request, response) {
+router.post('/post_delete_process', function (request, response) {
     var body = '';
     request.on('data', function (data) {
         body = body + data;
@@ -100,14 +95,14 @@ router.post('/campus/post_delete_process', function (request, response) {
             if (error) {
                 throw error;
             }
-            response.redirect(`/campus`);
+            response.redirect(`${request.baseUrl}`);
             response.end();
         });
     });
 });
 
 //댓글 생성
-router.get('/campus/:postId/comment_create', function (request, response) {
+router.get('/:postId/comment_create', function (request, response) {
     db.query(`SELECT * FROM post WHERE post_id=?`, [request.params.postId], function (error, post) {
         if (error) {
             console.log(error);
@@ -123,7 +118,7 @@ router.get('/campus/:postId/comment_create', function (request, response) {
                 var postControl = template.postControl(true, request.params.postId, post);
 
                 var commentForm = `<form action="comment_create_process" method="post">
-                                    <div class="comment-box comment-box__blue">
+                                    <div class="comment-box" id="comment-box__setBgColor">
                                         <div class="comment-box-top">
                                             <div class="comment-box-top__info">
                                             <span>익명</span>
@@ -137,7 +132,8 @@ router.get('/campus/:postId/comment_create', function (request, response) {
                                 </form>`
 
                 var commentList = template.commentList(comments)
-                var html = template.HTML(postControl, commentList, commentForm, commentsCount[0].cmtcnt);
+                var reactionModal = template.reactionModal(request.params.postId)
+                var html = template.HTML(postControl, commentList, commentForm, commentsCount[0].cmtcnt, reactionModal);
                 console.log(comments);
                     
                 response.send(html)
@@ -147,7 +143,7 @@ router.get('/campus/:postId/comment_create', function (request, response) {
 });
 
 // 댓글 생성 처리
-router.post('/campus/:postId/comment_create_process', function (request, response) {
+router.post('/:postId/comment_create_process', function (request, response) {
     var body = '';
     request.on('data', function (data) {
         body = body + data;
@@ -161,7 +157,8 @@ router.post('/campus/:postId/comment_create_process', function (request, respons
                 if (error) {
                     throw error;
                 }
-                response.redirect(`/campus/${request.params.postId}`);
+                console.log(`${request.baseUrl}/${request.params.postId}`)
+                response.redirect(`${request.baseUrl}/${request.params.postId}`);
                 response.end();
             }
         );
@@ -169,7 +166,7 @@ router.post('/campus/:postId/comment_create_process', function (request, respons
 });
 
 //댓글 수정
-router.get('/campus/:postId/comment_update', function (request, response) {
+router.get('/:postId/:commentId/comment_update', function (request, response) {
     db.query(`SELECT * FROM post WHERE post_id=?`, [request.params.postId], function (error, post) {
         if (error) {
             console.log(error);
@@ -182,11 +179,13 @@ router.get('/campus/:postId/comment_update', function (request, response) {
                 if (error3) {
                     throw error3;
                 }
-                var commentList = template.commentList(comments);
+                var commentList = template.commentFormList(comments);
                 var postControl = template.postControl(true, request.params.postId, post);
-
-                var commentForm = `<form action="comment_update_process" method="post">
-                                    <div class="comment-box comment-box__blue">
+                console.log(request.params.commentId);
+                console.log(comments[request.params.commentId - 1]);
+                console.log(comments[request.params.commentId - 1]);
+                var commentForm = `<form action="/${request.params.postId}/${request.params.commentId}/comment_update_process" method="post">
+                                    <div class="comment-box" id="comment-box__setBgColor">
                                         <div class="comment-box-top">
                                             <div class="comment-box-top__info">
                                                 <span>익명</span>
@@ -196,36 +195,42 @@ router.get('/campus/:postId/comment_update', function (request, response) {
                                                 <input type="submit" value="수정 완료">
                                             </div>
                                         </div>
-                                        <input type="hidden" name="id" value="${comments[0].comment_id}">
-                                        <input name="comment" value="${comments[0].comment_detail}">
+                                        <input type="hidden" name="id" value="${comments[request.params.commentId - 1].comment_id}">
+                                        <input name="comment" value="${comments[request.params.commentId - 1].comment_detail}">
                                     </div>
                                 </form>`
-                var html = template.HTML(postControl, commentList, commentForm, commentsCount[0].cmtcnt);
+                var reactionModal = template.reactionModal(request.params.postId);
+                var html = template.HTML(postControl, commentList, commentForm, commentsCount[0].cmtcnt, reactionModal);
                 return response.send(html)
             });
         });
     });
 });
-router.post('/campus/:postId/comment_update_process', function (request, response) {
+
+//댓글 수정 처리
+router.post('/:postId/:commentId/comment_update_process', function (request, response) {
     var body = '';
     request.on('data', function (data) {
         body = body + data;
     });
     request.on('end', function () {
         var comment = qs.parse(body);
+        console.log(comment);
         db.query(`UPDATE comment SET comment_detail=?, emotion_id=? WHERE comment_id=?`,
-            [comment.comment, 1, comment.comment_id],
+            [comment.comment, 1, comment.id],
             function (error, result) {
                 if (error) {
                     throw error;
                 }
-                response.redirect(`/campus/${request.params.postId}`)
+                response.redirect(`${request.baseUrl}/${request.params.postId}`)
                 response.end();
             }
         );
     });
 });
-router.post('/campus/comment_update_process', function (request, response) {
+
+//댓글 삭제 처리
+router.post('/:postId/comment_delete_process', function (request, response) {
     var body = '';
     request.on('data', function (data) {
         body = body + data;
@@ -233,15 +238,34 @@ router.post('/campus/comment_update_process', function (request, response) {
     request.on('end', function () {
         var comment = qs.parse(body);
 
-       db.query(`DELETE FROM comment WHERE comment_id=?`, [comment.comment_id], function (error, result) {
+       db.query(`DELETE FROM comment WHERE comment_id=?`, [comment.id], function (error, result) {
             if (error) {
                 throw error;
             }
-            response.redirect(`/campus/${request.params.postId}`);
+            response.redirect(`${request.baseUrl}/${request.params.postId}`);
             response.end();
         });
     });
 });
 
+//스크랩
+router.post('/post_scrap_process', function (request, response) {
+    var body = '';
+    request.on('data', function (data) {
+        body = body + data;
+    });
+    request.on('end', function () {
+        var post = qs.parse(body);
 
+        db.query(`INSERT INTO scrap (user_id, post_id, category_id, scrap_date)
+                VALUES(?, ?, ?, NOW())`,
+                [1, post.scrap_post_id, 1, null], function (error, result) {
+                if (error) {
+                    throw error;
+                }
+            response.redirect(`${request.baseUrl}/${request.params.postId}`);
+            response.end();
+        });
+    });
+});
 module.exports = router;

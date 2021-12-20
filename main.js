@@ -1,9 +1,9 @@
 var express = require('express');
 var app = express();
 
-var categoryRouter = require('./routes/campus');
+var campusRouter = require('./routes/campus');
 
-app.use('/campus', categoryRouter);
+app.use('/campus', campusRouter);
 
 app.use(function(req, res, next) {
     res.status(404).send('Sorry cant find that!');
