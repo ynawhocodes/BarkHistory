@@ -42,7 +42,7 @@
                 <input type="hidden"><br>
                 <span style=" font-size:2.5em; font-weight: bold"><%=data.category_name%>,</span>&nbsp;
                 <span style=" font-size:2.5em; font-weight: bold"> <%=data.category_detail%></span>
-                <button id="button" ><img src="../src/create.png" alt="글 쓰기"></button>
+                <button id="button"><img src="../src/create.png" alt="글 쓰기"></button>
                 <%})%>
             </form>
         </div>
@@ -56,20 +56,19 @@
     </div>
     <div class="board-container">
         <div class="board-box">
-            <a href="#">
-                <%boardDB_results.forEach((row, board) => { %>
+                <%boardList.forEach((row, board) => { %>
+                    <a href="/board/<%=row.category_id%>/<%=row.post_id%>">
                 <div class="board-date"><%=row.post_date%></div>
                 <div class="board-userName"><%=row.user_name%></div>
                 <div class="board-title"><%=row.post_title%></div>
                 <div class="board-emotion-num"><%=row.post_emotion_number%></div>
                 <div class="board-description"> <%=row.post_detail%></div>
                 <hr>
-                <% }) %>
-
             </a>
-
+            <%})%>
         </div>
-
+     
+ 
     </div>
     <!-- Swiper JS -->
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
