@@ -3,6 +3,8 @@ var express = require('express');
 var app = express();
 var router = express.Router();
 var qs = require('querystring');
+var db = require('../lib/db');
+
 
 //글 조회
 router.get('/:postId', function (request, response) {
@@ -21,7 +23,7 @@ router.get('/:postId', function (request, response) {
                 var postControl = template.postControl(true, request.params.postId, post)          
                 var commentList = template.commentList(comments)
                 var reactionModal = template.reactionModal(request.params.postId)
-                var html = template.HTML(postControl, commentList, "", commentsCount[0].cmtcnt, reactionModal);
+                var html = template.HTML(postControl, commentList, "", commentsCount[0].cmtcnt, request.params.postId);
                 
                 return response.send(html)
             });
@@ -48,7 +50,7 @@ router.get('/:postId/post_update', function (request, response) {
 
                 var commentList = template.commentList(comments)
                 var reactionModal = template.reactionModal(request.params.postId)
-                var html = template.HTML(postControl, commentList, "", commentsCount[0].cmtcnt, reactionModal);
+                var html = template.HTML(postControl, commentList, "", commentsCount[0].cmtcnt, request.params.postId);
                     
                 return response.send(html)
             });
@@ -94,7 +96,7 @@ router.post('/post_delete_process', function (request, response) {
 });
 
 //댓글 생성
-router.get('/:postId/comment_create', function (request, response) {
+router.get(':categoryId/:postId/comment_create', function (request, response) {
     db.query(`SELECT * FROM post WHERE post_id=?`, [request.params.postId], function (error, post) {
         if (error) {
             console.log(error);
@@ -110,6 +112,7 @@ router.get('/:postId/comment_create', function (request, response) {
                 var postControl = template.postControl(true, request.params.postId, post);
 
                 var commentForm = `<form action="comment_create_process" method="post">
+                                    <input type="hidden" name="emoji_id" value="emotion_id">
                                     <div class="comment-box" id="comment-box__setBgColor">
                                         <div class="comment-box-top">
                                             <div class="comment-box-top__info">
@@ -125,7 +128,7 @@ router.get('/:postId/comment_create', function (request, response) {
 
                 var commentList = template.commentList(comments)
                 var reactionModal = template.reactionModal(request.params.postId)
-                var html = template.HTML(postControl, commentList, commentForm, commentsCount[0].cmtcnt, reactionModal);
+                var html = template.HTML(postControl, commentList, commentForm, commentsCount[0].cmtcnt, request.params.postId);
                 console.log(comments);
                     
                 response.send(html)
@@ -192,7 +195,7 @@ router.get('/:postId/:commentId/comment_update', function (request, response) {
                                     </div>
                                 </form>`
                 var reactionModal = template.reactionModal(request.params.postId);
-                var html = template.HTML(postControl, commentList, commentForm, commentsCount[0].cmtcnt, reactionModal);
+                var html = template.HTML(postControl, commentList, commentForm, commentsCount[0].cmtcnt, request.params.postId);
                 return response.send(html)
             });
         });
