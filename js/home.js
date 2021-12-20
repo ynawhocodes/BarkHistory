@@ -30,10 +30,6 @@ var mySwiper = new Swiper('.swiper-container', {
              prevEl : ".swiper-button-prev",
          },
 
-         scrollbar: {
-           el: ".swiper-scrollbar",
-           draggable: true,
-         },
   });
 
 
