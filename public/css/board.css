@@ -128,3 +128,8 @@ body > div.container > div > div.update-header > span.update-header__stuff {
 ,body > div.container > div > div.update-header > span.update-header__stuff > form > input[type=submit] {
     margin-right: 10px;
 }
+
+#button, body > div.container > div > div.update-header > span.update-header__stuff > form > input[type=submit]
+,#comment-box__setBgColor > div > div.comment-box-top__stuff > form > input[type=submit] {
+    all: unset;
+}

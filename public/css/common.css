@@ -154,6 +154,3 @@ body {
     height: 100%;
 }
 
-input[type=submit] {
-    all: unset;
-}
