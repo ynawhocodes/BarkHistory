@@ -42,7 +42,7 @@
                 <input type="hidden"><br>
                 <span style=" font-size:2.5em; font-weight: bold"><%=data.category_name%>,</span>&nbsp;
                 <span style=" font-size:2.5em; font-weight: bold"> <%=data.category_detail%></span>
-                <button id="button" ><img src="../src/create.png" alt="글 쓰기"></button>
+                <button id="button"><img src="../src/create.png" alt="글 쓰기"></button>
                 <%})%>
             </form>
         </div>
@@ -56,7 +56,8 @@
     </div>
     <div class="board-container">
         <div class="board-box">
-            <a href="#">
+            <%abcd.forEach((aa, board)=>{%>
+            <a href="/board/<%= aa.category_id%>/<%=aa.post_id%>">
                 <%boardDB_results.forEach((row, board) => { %>
                 <div class="board-date"><%=row.post_date%></div>
                 <div class="board-userName"><%=row.user_name%></div>
@@ -64,11 +65,12 @@
                 <div class="board-emotion-num"><%=row.post_emotion_number%></div>
                 <div class="board-description"> <%=row.post_detail%></div>
                 <hr>
-                <% }) %>
-
             </a>
-
         </div>
+        <%})%>
+            <%})%>
+
+
 
     </div>
     <!-- Swiper JS -->

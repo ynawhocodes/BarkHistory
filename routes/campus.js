@@ -1,16 +1,9 @@
-var mysql = require('mysql');
-var db = mysql.createConnection({
-    host     : 'localhost',
-    user     : 'root',
-    password : 'barkhistory',
-    database : 'barkhistory'
-});
-
 var template = require('../lib/detailTemplate.js');
 var express = require('express');
 var app = express();
 var router = express.Router();
 var qs = require('querystring');
+var db = require('../lib/db');
 
 //글 조회
 router.get('/:postId', function (request, response) {
