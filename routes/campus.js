@@ -1,16 +1,10 @@
-var mysql = require('mysql');
-var db = mysql.createConnection({
-    host     : 'localhost',
-    user     : 'root',
-    password : 'barkhistory',
-    database : 'barkhistory'
-});
-
 var template = require('../lib/detailTemplate.js');
 var express = require('express');
 var app = express();
 var router = express.Router();
 var qs = require('querystring');
+var db = require('../lib/db');
+
 
 //글 조회
 router.get('/:postId', function (request, response) {
@@ -29,7 +23,7 @@ router.get('/:postId', function (request, response) {
                 var postControl = template.postControl(true, request.params.postId, post)          
                 var commentList = template.commentList(comments)
                 var reactionModal = template.reactionModal(request.params.postId)
-                var html = template.HTML(postControl, commentList, "", commentsCount[0].cmtcnt, reactionModal);
+                var html = template.HTML(postControl, commentList, "", commentsCount[0].cmtcnt, request.params.postId);
                 
                 return response.send(html)
             });
@@ -56,7 +50,7 @@ router.get('/:postId/post_update', function (request, response) {
 
                 var commentList = template.commentList(comments)
                 var reactionModal = template.reactionModal(request.params.postId)
-                var html = template.HTML(postControl, commentList, "", commentsCount[0].cmtcnt, reactionModal);
+                var html = template.HTML(postControl, commentList, "", commentsCount[0].cmtcnt, request.params.postId);
                     
                 return response.send(html)
             });
@@ -133,7 +127,7 @@ router.get('/:postId/comment_create', function (request, response) {
 
                 var commentList = template.commentList(comments)
                 var reactionModal = template.reactionModal(request.params.postId)
-                var html = template.HTML(postControl, commentList, commentForm, commentsCount[0].cmtcnt, reactionModal);
+                var html = template.HTML(postControl, commentList, commentForm, commentsCount[0].cmtcnt, request.params.postId);
                 console.log(comments);
                     
                 response.send(html)
@@ -200,7 +194,7 @@ router.get('/:postId/:commentId/comment_update', function (request, response) {
                                     </div>
                                 </form>`
                 var reactionModal = template.reactionModal(request.params.postId);
-                var html = template.HTML(postControl, commentList, commentForm, commentsCount[0].cmtcnt, reactionModal);
+                var html = template.HTML(postControl, commentList, commentForm, commentsCount[0].cmtcnt, request.params.postId);
                 return response.send(html)
             });
         });
