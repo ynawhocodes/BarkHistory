@@ -113,3 +113,18 @@ body > div.comment-container > div > input{
     min-height: 50px;
     padding: 0 15px;
 }
+
+.body > div.container > div > div.update-header > span.update-header__stuff {
+    display: flex;
+    margin-left: 70%;
+}
+
+#comment-box__setBgColor > div > div.comment-box-top__stuff {
+    display: flex;
+}
+
+#comment-box__setBgColor > div > div.comment-box-top__stuff > a
+, body > div.container > div > div.update-header > span.update-header__stuff > a
+,body > div.container > div > div.update-header > span.update-header__stuff > form > input[type=submit] {
+    margin-right: 10px;
+}
