@@ -1,11 +1,3 @@
-var mysql = require('mysql');
-var db = mysql.createConnection({
-    host     : 'localhost',
-    user     : 'root',
-    password : 'barkhistory',
-    database : 'barkhistory'
-});
-
 var template = require('../lib/detailTemplate.js');
 var express = require('express');
 var app = express();
