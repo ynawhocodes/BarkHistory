@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BarkHistory - Write</title>
+
+    <link rel="stylesheet" href="\css\common.css">
+    <link rel="stylesheet" href="\css\write.css">
+    <link rel="stylesheet" href="\css\navigation.css">
+    <link rel="stylesheet" href="\css\reaction.css">
+    <link rel="stylesheet" href="\css\swiper.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+</head>
+
+<body>
+    <div class="navigation">
+        <div class="tab">
+            <div class="swiper mySwiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide tab04"><a href="#">캠퍼스</a></div>
+                    <div class="swiper-slide tab01"><a href="#">연애</a></div>
+                    <div class="swiper-slide tab02"><a href="#">회사</a></div>
+                    <div class="swiper-slide tab03"><a href="#">알바</a></div>
+                    <div class="swiper-slide tab05"><a href="#">일상</a></div>
+                    <div class="swiper-slide tab06"><a href="#">10대</a></div>
+                    <div class="swiper-slide tab07"><a href="#">기타</a></div>
+                </div>
+            </div>
+        </div>
+        <div class="option">
+            <button type="button" onclick="alert('검색버튼 클릭')"><img src="/src/search.png" alt="검색"></button>
+            <button type="button" onclick="alert('설정 클릭')"><img src="/src/setting.png" alt="설정"></button>
+        </div>
+    </div>
+    <div class="container">
+        <div class="aa__">
+            <!-----공백------>
+        </div>
+        <form action="/board/create_process" method="post">
+            <div class="title">
+                <p>제목</p>
+                <input type="text" id="write_title" name="post_title">
+            </div>
+            <div class="content">
+                <p>본문</p>
+                <textarea id="write_content" name="post_detail"></textarea>
+            </div>
+    </div>
+    <div class="bottom">
+        <div id="nav">
+            <!--<li><a href="#">게시판을 선택해주세요.</a>-->
+                
+                <select name="category">
+                    <option value="1">연애</option>
+                    <option value="2">10대</option>
+                    <option value="3">캠퍼스</option>
+                    <option value="4">회사</option>
+                    <option value="5">알바</option>
+                </select>
+                
+
+          
+        </div>
+        <div class="btn_container">
+            <button type="submit" value="등록하기" class="submit_btn">등록</button>
+
+        </div>
+    </div>
+    <!-- Swiper JS -->
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="/js/swiper.js"></script>
+    <!-- Initialize Swiper -->
+</body>
+
+</html>
