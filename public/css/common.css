@@ -153,3 +153,7 @@ body {
     position: relative;
     height: 100%;
 }
+
+input[type=submit] {
+    all: unset;
+}
