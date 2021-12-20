@@ -29,7 +29,7 @@ router.get('/searchString', async function(request, response, next) {
     response.render('search',{'list_1':list_1});
 });
 
-router.post('/', async(request, response, next) => {
+router.post('/detail', async(request, response, next) => {
     
         console.log('c');
         const { searchString } = request.body;
