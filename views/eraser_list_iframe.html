@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv='refresh' content='10;'>
+    <title>BarkHistory</title>
+
+    <link rel="stylesheet" href="/css/common.css">
+    <link rel="stylesheet" href="/css/eraser_list.css">
+    <link rel="stylesheet" href="/css/navigation_mypage.css">
+    <link rel="stylesheet" href="/css/reaction.css">
+    <link rel="stylesheet" href="/css/swiper.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+</head>
+
+
+<body class="wrap">
+    <div class="eraser-container">
+        <% eraserList.forEach(function(list){ %>
+            <div class="eraser-box eraser-box__day<%= date_color[list.eraser_id] %>" id="iframe_target">
+                <a href="/mypage/eraser/detail/<%= list.eraser_id %>" target="_parent">
+                    <div class="eraser-duration"><%= list.eraser_date %></div>
+                    <div class="eraser-title"><%= list.eraser_title %></div>
+                    <div class="eraser-description"><%= list.eraser_detail %></div>
+                </a>
+            </div>
+        <% }) %>
+    </div>
+
+
+</body>
+
+</html>

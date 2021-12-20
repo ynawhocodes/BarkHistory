@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BarkHistory</title>
+
+    <link rel="stylesheet" href="/css/common.css">
+    <link rel="stylesheet" href="/css/eraser_write.css">
+    <link rel="stylesheet" href="/css/navigation_mypage.css">
+    <link rel="stylesheet" href="/css/reaction.css">
+    <link rel="stylesheet" href="/css/swiper.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+</head>
+
+
+<body class="wrap">
+    <div class="navigation">
+        <div class="site-title">
+            흑흑역사
+        </div>
+        <div class="tab">
+            <div class="swiper mySwiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide tab04"><a href="/mypage/eraser">지우개</a></div>
+                    <div class="swiper-slide tab01"><a href="/mypage">계정 정보</a></div>
+                    <div class="swiper-slide tab02"><a href="/mypage/mypost">내가 쓴 글</a></div>
+                    <div class="swiper-slide tab03"><a href="/mypage/myscrap">스크랩한 글</a></div>
+                </div>
+            </div>
+        </div>
+        <div class="option">
+            <button type="button" onclick="alert('검색버튼 클릭')"><img src="/src/search.png" alt="검색"></button>
+            <button type="button" onclick="alert('설정 클릭')"><img src="/src/setting.png" alt="설정"></button>
+        </div>
+    </div>
+
+    <div class="container">
+        <form action="/mypage/eraser/create_process" method="post">
+            <div class="eraser-title">
+                <input type="text" class="title-input" name="title_input" size="30" placeholder="제목을 작성해주세요">
+            </div> <br>
+            <div class="eraser-description">
+                <textarea cols="80" rows="11" class="description-input" name="desciption_input"
+                placeholder="아무도 볼 수 없는 ‘지우개’ 공간입니다.&#13;&#10;혼자 털어버리고 싶은 일이 있다면 이곳에 적어주세요.&#13;&#10;작성한 글은 3일 뒤에 사라집니다.&#13;&#10;지워지는 글과 함께 마음속에서도 털고 다음부터 잘하는걸로 해요!"></textarea>
+            </div> <br>
+            <button id="submit"><img src="/src/createBtn.png" alt="글 쓰기"></button>
+        </form>
+    </div>
+
+    <!-- Swiper JS -->
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="/js/swiper.js"></script>
+    <!-- Initialize Swiper -->
+    <script src="/js/reaction.js"></script>
+
+</body>
+
+</html>

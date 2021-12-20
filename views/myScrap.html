@@ -5,10 +5,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BarkHistory - Account Information page</title>
+    <title>BarkHistory</title>
 
     <link rel="stylesheet" href="../css/common.css">
-    <link rel="stylesheet" href="../css/account_info.css">
+    <link rel="stylesheet" href="../css/myScrap.css">
     <link rel="stylesheet" href="../css/navigation_mypage.css">
     <link rel="stylesheet" href="../css/reaction.css">
     <link rel="stylesheet" href="../css/swiper.css">
@@ -24,10 +24,10 @@
         <div class="tab">
             <div class="swiper mySwiper">
                 <div class="swiper-wrapper">
-                    <div class="swiper-slide tab01"><a href="#">계정 정보</a></div>
-                    <div class="swiper-slide tab02"><a href="#">내가 쓴 글</a></div>
-                    <div class="swiper-slide tab03"><a href="#">스크랩한 글</a></div>
-                    <div class="swiper-slide tab04"><a href="#">지우개</a></div>
+                    <div class="swiper-slide tab03"><a href="/mypage/myscrap">스크랩한 글</a></div>
+                    <div class="swiper-slide tab01"><a href="/mypage">계정 정보</a></div>
+                    <div class="swiper-slide tab02"><a href="/mypage/mypost">내가 쓴 글</a></div>
+                    <div class="swiper-slide tab04"><a href="/mypage/eraser">지우개</a></div>
                 </div>
             </div>
         </div>
@@ -36,16 +36,19 @@
             <button type="button" onclick="alert('설정 클릭')"><img src="../src/setting.png" alt="설정"></button>
         </div>
     </div>
-
-    <div class="container">
-        <div class="container-inner">
-            <span class="page-title">아이디 / 비밀번호 변경</span> <br>
-            <div class="account-change">
-                <input type="text" class="id-change" name="id-change" placeholder="아이디">
-                <input type="password" class="pw-change" name="pw-change" placeholder="비밀번호">
-                <button type="button" class="change-btn" name="id-change-btn">변경</button>
-            </div>            
-        </div>
+                
+    <div class="myScrap-container">
+        <% scrapList.forEach(function(list){ %>
+            <div class="myScrap-box">
+                <a href="/<%= list.category_id %>/<%= list.post_id %>">
+                    <div class="myScrap-date"><%= list.post_date %></div>
+                    <div class="myScrap-title"><%= list.post_title %></div>
+                    <div class="myScrap-emotionNum"><%= list.post_emotion_number %></div>
+                    <div class="myScrap-description"><%= list.post_detail %></div>
+                </a>
+                <hr>
+            </div>
+        <% }) %>
     </div>
 
     <!-- Swiper JS -->

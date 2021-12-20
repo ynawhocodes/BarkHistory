@@ -25,7 +25,7 @@ body {
     width: 100%;
 }
 
-.sign-up-input .id-input, .pw-input, .pw-check-input{
+.sign-up-input .name-input, .pw-input, .pw-check-input{
     margin: 2.5% auto;
     padding: 1.5%;
     width: 96.5%;

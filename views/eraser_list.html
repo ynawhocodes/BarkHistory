@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <meta http-equiv='refresh' content='10;'> -->
+    <title>BarkHistory</title>
+
+    <link rel="stylesheet" href="/css/common.css">
+    <link rel="stylesheet" href="/css/eraser_list.css">
+    <link rel="stylesheet" href="/css/navigation_mypage.css">
+    <link rel="stylesheet" href="/css/reaction.css">
+    <link rel="stylesheet" href="/css/swiper.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+
+<body class="wrap">
+    <div class="navigation">
+        <div class="site-title">
+            흑흑역사
+        </div>
+        <div class="tab">
+            <div class="swiper mySwiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide tab04"><a href="/mypage/eraser">지우개</a></div>
+                    <div class="swiper-slide tab01"><a href="/mypage">계정 정보</a></div>
+                    <div class="swiper-slide tab02"><a href="/mypage/mypost">내가 쓴 글</a></div>
+                    <div class="swiper-slide tab03"><a href="/mypage/myscrap">스크랩한 글</a></div>
+                </div>
+            </div>
+        </div>
+        <div class="option">
+            <button type="button" onclick="alert('검색버튼 클릭')"><img src="../src/search.png" alt="검색"></button>
+            <button type="button" onclick="alert('설정 클릭')"><img src="../src/setting.png" alt="설정"></button>
+        </div>
+    </div>
+
+    <div class="container">
+        <span class="page-title">지우개, 다 쓰고 기억 속에서 지워버리자</span> <br>
+        <button id="button" onclick="location.href='/mypage/eraser/create'"><img src="../src/create.png" alt="글 쓰기"></button>
+    </div>
+    
+
+    <iframe class="eraser-container" src="/mypage/eraserList" frameborder="0"></iframe>
+    
+    <script>
+        $(document).ready(function() {
+            var pageRefresh = 5000; //5 s
+            setInterval(function() {
+                $("#eraser-container").load(location.href + " #eraser-container>*", "");
+            }, pageRefresh);
+        });
+    </script>
+    
+    
+    <!-- Swiper JS -->
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="../js/swiper.js"></script>
+    <!-- Initialize Swiper -->
+    <script src="../js/reaction.js"></script>
+    
+
+
+</body>
+
+</html>

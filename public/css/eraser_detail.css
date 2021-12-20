@@ -14,22 +14,12 @@ body {
     padding: 4% 0 2% 0;
 }
 
-.eraser-title {
-    width: 100%;
-    margin: 0 auto;
-}
-
-.eraser-description {
-    width: 100%;
-    margin: 0 auto;
-}
-
 .eraser-button {
     margin: 0 auto;
     width: 100%;    
 }
 
-.title-input {
+.eraser-title {
     width: 55%;
     margin: 0 auto;
     padding: 1%;
@@ -40,7 +30,18 @@ body {
     background-color: #F3F3F3;
 }
 
-.description-input {
+.eraser-date {
+    width: 55%;
+    margin: 0 auto;
+    padding: 1%;
+    font-size: 24px;
+    font-weight: bold;
+    border-radius: 20px;
+    border: 1px solid #F3F3F3;
+    background-color: #F3F3F3;
+}
+
+.eraser-description {
     width: 55%;
     margin: 0 auto;
     padding: 1%;
