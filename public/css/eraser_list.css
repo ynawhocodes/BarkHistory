@@ -5,6 +5,7 @@ body {
     color: #000;
     margin: 0;
     padding: 0;
+    width: 100%;
 }
 
 .container {
@@ -28,7 +29,8 @@ body {
 .eraser-container {
     margin: 0 auto;
     width: 100%;
-    padding: 0 0 20px 0;
+    height: 60%;
+    padding: 0 0 10px 0;
 }
 
 .eraser-box__day3 {
@@ -50,15 +52,6 @@ body {
 }
 
 .eraser-box__day1 {
-    background-color: #7C7C7C;
-    width: 1070px;
-    margin: 0 auto 20px auto;
-    padding: 2% 4% 2% 3%;
-    border-radius: 30px;
-    border: 2px solid #000;
-}
-
-.eraser-box__day0 {
     background-color: #474747;
     width: 1070px;
     margin: 0 auto 20px auto;

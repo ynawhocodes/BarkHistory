@@ -5,10 +5,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BarkHistory - Sign up page</title>
+    <title>BarkHistory - Sign in page</title>
 
     <link rel="stylesheet" href="../css/common.css">
-    <link rel="stylesheet" href="../css/signUp.css">
+    <link rel="stylesheet" href="../css/signIn.css">
     <link rel="stylesheet" href="../css/navigation.css">
     <link rel="stylesheet" href="../css/reaction.css">
     <link rel="stylesheet" href="../css/swiper.css">
@@ -37,18 +37,19 @@
         </div>
     </div>
     <div class="container">
-        <div class="container-inner">
-            <div class="sign-up-input">
-                <input type="text" class="id-input" name="id-input" placeholder="아이디"> <br>
-                <input type="password" class="pw-input" name="pw-input" placeholder="비밀번호"> <br>
-                <input type="password" class="pw-check-input" name="pw-check-input" placeholder="비밀번호 확인">
+        <form action="/auth/signIn_process" method="post">
+            <div class="container-inner">
+                <div class="sign-in-input">
+                    <input type="text" class="name-input" name="name_input" placeholder="아이디"> <br>
+                    <input type="password" class="pw-input" name="pw_input" placeholder="비밀번호">
+                </div>
+                
+                <div class="sign-btn">
+                    <button type="submit" class="sign-in-btn">로그인</button> <br>
+                    <button type="button" class="sign-up-btn" onclick="location.href='/auth/signUp'">회원가입</button>
+                </div>
             </div>
-            
-            <div class="sign-btn">
-                <button type="button" class="sign-up-btn" onclick="alert('회원가입 성공')">회원가입 하기</button>
-            </div>
-            
-        </div>
+        </form>
     </div>
 
     <!-- Swiper JS -->

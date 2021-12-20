@@ -3,33 +3,7 @@ var router = express.Router();
 var db = require('../lib/db');
 
 router.get('/signIn', function(request, response) {
-    var template = `
-    <!doctype html>
-    <html>
-        <head>
-            <title>Sign In</title>
-            <meta charset="utf-8">
-        </head>
-        <body>
-            <form action="/auth/signIn_process" method="post">
-                <div class="container-inner">
-                    <div class="sign-in-input">
-                        <input type="text" class="name-input" name="name_input" placeholder="아이디"> <br>
-                        <input type="password" class="pw-input" name="pw_input" placeholder="비밀번호">
-                    </div>
-                    
-                    <div class="sign-btn">
-                        <button type="submit" class="sign-in-btn">로그인</button> <br>
-                        <button type="button" class="sign-up-btn">회원가입</button>
-                    </div>
-                </div>
-            </form>
-        </body>
-    </html>
-    
-    `;
-    response.writeHead(200);
-    response.end(template);
+    response.render('signIn.html')
 });
 
 router.post('/signIn_process', function(request, response) {
@@ -69,44 +43,38 @@ router.post('/signIn_process', function(request, response) {
 });
 
 router.get('/signUp', function(request, response) {
-    var template = `
-    <!doctype html>
-    <html>
-        <head>
-            <title>Sign Up</title>
-            <meta charset="utf-8">
-        </head>
-        <body>
-            <form action="/auth/signUp_process" method="post">        
-                <div class="sign-up-input">
-                    <input type="text" class="name-input" name="name_input" placeholder="아이디"> <br>
-                    <input type="password" class="pw-input" name="pw_input" placeholder="비밀번호"> <br>
-                    <input type="password" class="pw-check-input" name="pw_check_input" placeholder="비밀번호 확인">
-                </div>
-                
-                <div class="sign-btn">
-                    <button type="submit" class="sign-up-btn">회원가입 하기</button>
-                </div>
-            </form>
-        </body>
-    </html>
-    `;
-    response.writeHead(200);
-    response.end(template);
+    response.render('signUp.html')
 });
 
 
 router.post('/signUp_process', function(request, response) {
     var post = request.body;
-    db.query(`INSERT INTO user (user_name, user_pw) VALUES(?, ?)`, [post.name_input, post.pw_input],
+    db.query(`SELECT COUNT(*) AS nameCount FROM user WHERE user_name=?`, [post.name_input],
         function(error, result) {
             if(error) {
                 throw error;
             }
-            response.writeHead(302, {Location: '/auth/signIn'});
-            response.end();
-        }
-    );
+            console.log(result[0].nameCount);
+            if(result[0].nameCount == 0) { //아이디 중복여부 확인
+                if(post.pw_input === post.pw_check_input) { //비밀번호 동일하게 입력했는지 확인
+                    db.query(`INSERT INTO user (user_name, user_pw) VALUES(?, ?)`, [post.name_input, post.pw_input],
+                        function(error, result) {
+                            if(error) {
+                                throw error;
+                            }
+                            response.send("<script>alert('회원가입 성공! 로그인해주세요.');location.href='/auth/signIn';</script>");
+                    });
+                }
+                else {
+                    response.send("<script>alert('비밀번호를 확인해주세요.');location.href='/auth/signUp';</script>");
+                }
+            }
+            else {
+                response.send("<script>alert('이미 존재하는 아이디입니다. 다른 아이디를 입력해주세요.');location.href='/auth/signUp';</script>");
+            }
+    });
+    
+    
 });
 
 router.get('/logout', function (request, response) {
