@@ -96,7 +96,7 @@ router.post('/post_delete_process', function (request, response) {
 });
 
 //댓글 생성
-router.get('/:postId/comment_create', function (request, response) {
+router.get(':categoryId/:postId/comment_create', function (request, response) {
     db.query(`SELECT * FROM post WHERE post_id=?`, [request.params.postId], function (error, post) {
         if (error) {
             console.log(error);
@@ -112,6 +112,7 @@ router.get('/:postId/comment_create', function (request, response) {
                 var postControl = template.postControl(true, request.params.postId, post);
 
                 var commentForm = `<form action="comment_create_process" method="post">
+                                    <input type="hidden" name="emoji_id" value="emotion_id">
                                     <div class="comment-box" id="comment-box__setBgColor">
                                         <div class="comment-box-top">
                                             <div class="comment-box-top__info">
