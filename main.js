@@ -1,22 +1,33 @@
-var member = require('./lib/member.js');
+/*var member = require('./lib/member.js');*/
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
 var session = require('express-session');
 var FileStore = require('session-file-store')(session);
-var indexRouter = require('./routes/index');
+/*var indexRouter = require('./routes/index');*/
 var authRouter = require('./routes/auth');
 var mypageRouter = require('./routes/mypage');
+var homeRouter = require('./routes/home');
+var path = require('path');
+
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(session({
     secret: 'cotton candy',
     resave: false,
     saveUninitialized: true,
-    store: new FileStore()
+    store: new FileStore({logFn: function(){}})
 }));
 
-app.use('/', indexRouter);
+
+app.use(express.static(path.join(__dirname, './public')));
+
+app.engine('html', require('ejs').renderFile);
+app.set('view engine', 'html');
+
+/*app.use('/', indexRouter);*/
+
+app.use('/', homeRouter);
 app.use('/auth', authRouter);
 app.use('/mypage', mypageRouter);
 

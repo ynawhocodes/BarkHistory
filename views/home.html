@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css" />
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="../css/home.css">
+    <title>BarkHistory - home page</title>
+</head>
+
+
+<body>
+      <div class = "swiper-container">
+           <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                     <input class="tab" type="button" onclick="location.href='/board/1'" value="캠퍼스" style="background-color:#30cff7; border:#30cff7; color:black;">
+                     <input class="tab" type="button" onclick="location.href='/board/2'" value="연애" style="background-color:black">
+                     <input class="tab" type="button" onclick="location.href='/board/3'" value="회사" style="background-color:black">
+                     <input class="tab" type="button" onclick="location.href='/board/4'" value="알바" style="background-color:black">
+                     <input class="tab" type="button" onclick="location.href='/board/5'" value="10대" style="background-color:black">
+                     <button class="option" type="button"  onclick="location.href='/search' "><img src="../src/search.png" alt="검색"></button>
+                     <button class="option" type="button" onclick="location.href='/mypage'"><img src="../src/setting.png" alt="설정"></button>
+                     
+                     <div class="update-title" >실시간 HOT</div>
+                     <%hot_post.forEach(function(list) {%>
+                         <input class="title" type="button" value="<%= list.post_title %>" >
+                      <div class="description">
+                         <%= list.post_detail %>
+                      </div>
+                   
+                      <div class="reaction">
+                          <h4 class="reaction-title"> <%= list.post_scrap_number %></h4>
+                     </div>
+                     <div>
+                       <input class="tabs" type="button" onclick="location.href='/board/1'" value="캠퍼스로 이동" style="background-color:#30cff7; border:#30cff7; color:black;"></a>
+                     </div>
+                </div>
+                <div class="swiper-slide">
+                     <input class="tab" type="button" onclick="location.href='/board/1'" value="캠퍼스" style="background-color:black">
+                     <input class="tab" type="button" onclick="location.href='/board/2'" value="연애" style="background-color:#edf108; border:#edf108; color:black;">
+                     <input class="tab" type="button" onclick="location.href='/board/3'" value="회사" style="background-color:black">
+                     <input class="tab" type="button" onclick="location.href='/board/4'" value="알바" style="background-color:black">
+                     <input class="tab" type="button" onclick="location.href='/board/5'" value="10대" style="background-color:black">
+                     <button class="option" type="button" onclick="location.href='/search' "><img src="../src/search.png" alt="검색"></button>
+                     <button class="option" type="button" onclick="location.href='/mypage'"><img src="../src/setting.png" alt="설정"></button>
+                     <div class="update-title" >실시간 HOT</div>
+                         <input class="title" type="button" value="<%= list.post_title %>" >
+                      <div class="description">
+                        <%= list.post_detail %>
+                      </div>
+                      <div class="reaction">
+                          <h4 class="reaction-title">+<%= list.post_scrap_number %></h4>
+                     </div>
+                     <div>
+                       <input class="tabs" type="button" onclick="location.href='/board/2'" value="연애로 이동" style="background-color:#edf108; border:#edf108; color:black;"></a>
+                     </div>
+                  </div>
+                  <div class="swiper-slide">
+                       <input class="tab" type="button" onclick="location.href='/board/1'" value="캠퍼스" style="background-color:black">
+                       <input class="tab" type="button" onclick="location.href='/board/2'" value="연애" style="background-color:black">
+                       <input class="tab" type="button" onclick="location.href='/board/3'" value="회사" style="background-color:#4cf82a; border:#4cf82a;color:black;">
+                       <input class="tab" type="button" onclick="location.href='/board/4'" value="알바" style="background-color:black">
+                       <input class="tab" type="button" onclick="location.href='/board/5'" value="10대" style="background-color:black">
+                       <button class="option" type="button" onclick="location.href='/search' "><img src="../src/search.png" alt="검색"></button>
+                       <button class="option" type="button" onclick="location.href='/mypage'"><img src="../src/setting.png" alt="설정"></button>
+                       <div class="update-title" >실시간 HOT</div>
+                           <input class="title" type="button" value="<%= list.post_title %>" >
+                        <div class="description">
+                            <%= list.post_detail %>
+                        </div>
+                        <div class="reaction">
+                            <h4 class="reaction-title"> +<%= list.post_scrap_number %></h4>
+                       </div>
+                       <div>
+                         <input class="tabs" type="button" onclick="location.href='/board/3'" value="회사로 이동" style="background-color:#4cf82a; border:#4cf82a;color:black;"></a>
+                       </div>
+                    </div>
+                    <div class="swiper-slide">
+                         <input class="tab" type="button" onclick="location.href='/board/1'" value="캠퍼스" style="background-color:black">
+                         <input class="tab" type="button" onclick="location.href='/board/2'" value="연애" style="background-color:black">
+                         <input class="tab" type="button" onclick="location.href='/board/3'" value="회사" style="background-color:black">
+                         <input class="tab" type="button" onclick="location.href='/board/4'" value="알바" style="background-color:orange; border:orange; color:black;">
+                         <input class="tab" type="button" onclick="location.href='/board/5'" value="10대" style="background-color:black">
+                         <button class="option" type="button" onclick="location.href='/search' "><img src="../src/search.png" alt="검색"></button>
+                         <button class="option" type="button" onclick="location.href='/mypage'"><img src="../src/setting.png" alt="설정"></button>
+                         <div class="update-title" >실시간 HOT</div>
+                             <input class="title" type="button" value="<%= list.post_title %>" >
+                          <div class="description">
+                            <%= list.post_detail %>
+                          </div>
+                          <div class="reaction">
+                              <h4 class="reaction-title"> <%= list.post_scrap_number %></h4>
+                         </div>
+                         <div>
+                           <input class="tabs" type="button" onclick="location.href='/board/4'" value="알바로 이동" style="background-color:orange; border:orange; color:black;"></a>
+                         </div>
+                      </div>
+                      <div class="swiper-slide">
+                        <input class="tab" type="button" onclick="location.href='/board/1'" value="캠퍼스" style="background-color:black">
+                        <input class="tab" type="button" onclick="location.href='/board/2'" value="연애" style="background-color:black">
+                        <input class="tab" type="button" onclick="location.href='/board/3'" value="회사" style="background-color:black">
+                        <input class="tab" type="button" onclick="location.href='/board/4'" value="알바" style="background-color:black;">
+                        <input class="tab" type="button" onclick="location.href='/board/5'" value="10대" style="background-color:#81BEF7; border:#81BEF7; color:black;">
+                        <button class="option" type="button" onclick="location.href='/search' "><img src="../src/search.png" alt="검색"></button>
+                        <button class="option" type="button" onclick="location.href='/mypage'"><img src="../src/setting.png" alt="설정"></button>
+                        <div class="update-title" >실시간 HOT</div>
+                            <input class="title" type="button" value="<%= list.post_title %>" >
+                         <div class="description">
+                           <%= list.post_detail %>
+                         </div>
+                         <div class="reaction">
+                             <h4 class="reaction-title"> <%= list.post_scrap_number %></h4>
+                        </div>
+                        <div>
+                          <input class="tabs" type="button" onclick="location.href='/board/5'" value="알바로 이동" style="background-color:#81BEF7; border:#81BEF7; color:black;"></a>
+                        </div>
+                     </div>
+                     <%})%>
+                      </div>
+
+                      <div class="swiper-pagination"></div>
+                      <div class="swiper-button-prev"></div>
+                      <div class="swiper-button-next"></div>
+
+                </div>
+  <script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+  <script>
+        var mySwiper = new Swiper('.swiper-container', {
+
+                observer : true,	// 추가
+                observeParents : true,
+                direction : 'horizontal',
+                //한번에 보여지는 페이지 숫자
+                slidesPerView : 1,
+                //페이지와 페이지 사이의 간격
+                spaceBetween : 40,
+                //드레그 기능 true 사용가능 false 사용불가
+                debugger : false,
+                //마우스 휠기능 true 사용가능 false 사용불가
+                mousewheel : true,
+                //반복 기능 true 사용가능 false 사용불가
+                loop : true,
+                //선택된 슬라이드를 중심으로 true 사용가능 false 사용불가 djqt
+                centeredSlides : true,
+                //페이징
+                pagination : {
+                //페이지 기능
+                el : ".swiper-pagination",
+                //클릭 가능여부
+                type : "bullets"
+                },
+                //방향표
+                navigation : {
+                //다음페이지 설정
+                nextEl : ".swiper-button-next",
+                //이전페이지 설정
+                prevEl : ".swiper-button-prev",
+                },
+
+                });
+
+  </script>
+
+
+
+  </body>
+  </html>
