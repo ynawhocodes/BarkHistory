@@ -97,12 +97,27 @@ router.get('/:category_id/:postId', function(request, response) {
                 if (error3) {
                     throw error3;
                 }
-                var postControl = template.postControl(true, request.params.postId, post)
-                var commentList = template.commentList(comments)
-                var reactionModal = template.reactionModal(request.params.postId, request.params.category_id)
-                var html = template.HTML(postControl, commentList, "", commentsCount[0].cmtcnt, reactionModal);
+                db.query(`SELECT user_name FROM post LEFT JOIN user ON post.user_id=user.user_id WHERE post_id=?`, [request.params.postId], function(error4, writer) {
+                    if (error4) {
+                        throw error4;
+                    }
+                    if (comments[0].comment_id == undefined) {
+                        comments[0].comment_id = '*';
+                        console.log(comments[0].comment_id);
+                    }
+                    db.query(`SELECT user_name FROM comment LEFT JOIN user ON comment.user_id=user.user_id WHERE comment_id=?`, [comments[0].comment_id], function(error5, reviewer) {
+                        if (error5) {
+                            throw error5;
+                        }
+                        console.log(writer[0].user_name)
+                        var postControl = template.postControl(true, request.params.postId, post, writer[0].user_name)
+                        var commentList = template.commentList(comments, reviewer[0].user_name)
+                        var reactionModal = template.reactionModal(request.params.postId, request.params.category_id)
+                        var html = template.HTML(postControl, commentList, "", commentsCount[0].cmtcnt, reactionModal);
 
-                return response.send(html)
+                        return response.send(html)
+                    });
+                });
             });
         });
     });
@@ -123,18 +138,21 @@ router.get('/:category_id/:postId/post_update', function(request, response) {
                 if (error3) {
                     throw error3;
                 }
-                var postControl = template.postFormControl(true, post);
+                db.query(`SELECT user_name FROM comment LEFT JOIN user ON comment.user_id=user.user_id WHERE comment_id=?`, [comments[0].comment_id], function(error5, reviewer) {
+                    if (error5) {
+                        throw error5;
+                    }
+                    var commentList = template.commentList(comments, reviewer[0].user_name)
+                    var postControl = template.postFormControl(true, post);
+                    var reactionModal = template.reactionModal(request.params.postId, request.params.category_id)
+                    var html = template.HTML(postControl, commentList, "", commentsCount[0].cmtcnt, reactionModal);
 
-                var commentList = template.commentList(comments)
-                var reactionModal = template.reactionModal(request.params.postId, request.params.category_id)
-                var html = template.HTML(postControl, commentList, "", commentsCount[0].cmtcnt, reactionModal);
-
-                return response.send(html)
-            });
-        })
+                    return response.send(html)
+                });
+            })
+        });
     });
 });
-
 //글 수정 처리
 router.post('/:category_id/:postId/post_update_process', function(request, response) {
     var body = '';
@@ -186,9 +204,18 @@ router.get('/:category_id/:postId/comment_create', function(request, response) {
                 if (error3) {
                     throw error3;
                 }
-                var postControl = template.postControl(true, request.params.postId, post);
+                db.query(`SELECT user_name FROM post LEFT JOIN user ON post.user_id=user.user_id WHERE post_id=?`, [request.params.postId], function(error4, writer) {
+                    if (error4) {
+                        throw error4;
+                    }
+                    db.query(`SELECT user_name FROM comment LEFT JOIN user ON comment.user_id=user.user_id WHERE comment_id=?`, [comments[0].comment_id], function(error5, reviewer) {
+                        if (error5) {
+                            throw error4;
+                        }
+                        var postControl = template.postControl(true, request.params.postId, post, writer[0].user_name)
+                        var commentList = template.commentList(comments, reviewer[0].user_name)
 
-                var commentForm = `<form action="/board/comment_create_process" method="post">
+                        var commentForm = `<form action="/board/${request.params.category_id}/${request.params.postId}/comment_create_process" method="post">
                     <div class="comment-box" id="comment-box__setBgColor">
                         <div class="comment-box-top">
                             <div class="comment-box-top__info">
@@ -202,12 +229,14 @@ router.get('/:category_id/:postId/comment_create', function(request, response) {
                     </div>
                 </form>`
 
-                var commentList = template.commentList(comments)
-                var reactionModal = template.reactionModal(request.params.postId, request.params.category_id)
-                var html = template.HTML(postControl, commentList, commentForm, commentsCount[0].cmtcnt, reactionModal);
-                console.log(comments);
 
-                response.send(html)
+                        var reactionModal = template.reactionModal(request.params.postId, request.params.category_id)
+                        var html = template.HTML(postControl, commentList, commentForm, commentsCount[0].cmtcnt, reactionModal);
+                        console.log(comments);
+
+                        response.send(html)
+                    });
+                });
             });
         });
     });
@@ -228,8 +257,7 @@ VALUES(?, ?, NOW(), ?, ?, ?)`, [null, comment.comment, 1, 1, request.params.post
                 if (error) {
                     throw error;
                 }
-                console.log(`${request.baseUrl}/${request.params.postId}`)
-                response.redirect(`${request.baseUrl}/${request.params.postId}`);
+                response.redirect(`${request.baseUrl}/${request.params.category_id}/${request.params.postId}`);
                 response.end();
             }
         );
@@ -250,12 +278,18 @@ router.get('/:category_id/:postId/:commentId/comment_update', function(request, 
                 if (error3) {
                     throw error3;
                 }
-                var commentList = template.commentFormList(comments);
-                var postControl = template.postControl(true, request.params.postId, post);
-                console.log(request.params.commentId);
-                console.log(comments[request.params.commentId - 1]);
-                console.log(comments[request.params.commentId - 1]);
-                var commentForm = `<form action="/board/${request.params.postId}/${request.params.commentId}/comment_update_process" method="post">
+                db.query(`SELECT user_name FROM post LEFT JOIN user ON post.user_id=user.user_id WHERE post_id=?`, [request.params.postId], function(error4, writer) {
+                    if (error4) {
+                        throw error4;
+                    }
+                    db.query(`SELECT user_name FROM comment LEFT JOIN user ON comment.user_id=user.user_id WHERE comment_id=?`, [comments[0].comment_id], function(error5, reviewer) {
+                        if (error5) {
+                            throw error4;
+                        }
+                        var postControl = template.postControl(true, request.params.postId, post, writer[0].user_name)
+                        var commentList = template.commentList(comments, reviewer[0].user_name)
+
+                        var commentForm = `<form action="/board/${request.params.postId}/${request.params.commentId}/comment_update_process" method="post">
                     <div class="comment-box" id="comment-box__setBgColor">
                         <div class="comment-box-top">
                             <div class="comment-box-top__info">
@@ -270,9 +304,11 @@ router.get('/:category_id/:postId/:commentId/comment_update', function(request, 
                         <input name="comment" value="${comments[request.params.commentId - 1].comment_detail}">
                     </div>
                 </form>`
-                var reactionModal = template.reactionModal(request.params.postId, request.params.category_id);
-                var html = template.HTML(postControl, commentList, commentForm, commentsCount[0].cmtcnt, reactionModal);
-                return response.send(html)
+                        var reactionModal = template.reactionModal(request.params.postId, request.params.category_id);
+                        var html = template.HTML(postControl, commentList, commentForm, commentsCount[0].cmtcnt, reactionModal);
+                        return response.send(html)
+                    });
+                });
             });
         });
     });
