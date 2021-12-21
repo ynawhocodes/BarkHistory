@@ -16,13 +16,13 @@
       <div class = "swiper-container">
            <div class="swiper-wrapper">
                 <div class="swiper-slide">
-                     <input class="tab" type="button" onclick="alert('캠퍼스 페이지')" value="캠퍼스" style="background-color:#30cff7; border:#30cff7; color:black;">
-                     <input class="tab" type="button" onclick="alert('연애 페이지')" value="연애" style="background-color:black">
-                     <input class="tab" type="button" onclick="alert('회사 페이지')" value="회사" style="background-color:black">
-                     <input class="tab" type="button" onclick="alert('알바 페이지')" value="알바" style="background-color:black">
-                     <input class="tab" type="button" onclick="alert('10대 페이지')" value="10대" style="background-color:black">
-                     <button class="option" type="button" onclick="alert('검색버튼 클릭')"><img src="../src/search.png" alt="검색"></button>
-                     <button class="option" type="button" onclick="alert('설정 클릭')"><img src="../src/setting.png" alt="설정"></button>
+                     <input class="tab" type="button" onclick="location.href='/board/1'" value="캠퍼스" style="background-color:#30cff7; border:#30cff7; color:black;">
+                     <input class="tab" type="button" onclick="location.href='/board/2'" value="연애" style="background-color:black">
+                     <input class="tab" type="button" onclick="location.href='/board/3'" value="회사" style="background-color:black">
+                     <input class="tab" type="button" onclick="location.href='/board/4'" value="알바" style="background-color:black">
+                     <input class="tab" type="button" onclick="location.href='/board/5'" value="10대" style="background-color:black">
+                     <button class="option" type="button"  onclick="location.href='/search' "><img src="../src/search.png" alt="검색"></button>
+                     <button class="option" type="button" onclick="location.href='/mypage'"><img src="../src/setting.png" alt="설정"></button>
                      <div class="update-title" >실시간 HOT</div>
                          <input class="title" type="button" value="<%= list[0].post_title %>" >
                       <div class="description">
@@ -32,17 +32,17 @@
                           <h4 class="reaction-title"> +<%= list[0].post_scrap_number %></h4>
                      </div>
                      <div>
-                       <input class="tabs" type="button" onclick="alert('캠퍼스로 이동')" value="캠퍼스로 이동" style="background-color:#30cff7; border:#30cff7; color:black;"></a>
+                       <input class="tabs" type="button" onclick="location.href='/board/1'" value="캠퍼스로 이동" style="background-color:#30cff7; border:#30cff7; color:black;"></a>
                      </div>
                 </div>
                 <div class="swiper-slide">
-                     <input class="tab" type="button" onclick="alert('캠퍼스 페이지')" value="캠퍼스" style="background-color:black">
-                     <input class="tab" type="button" onclick="alert('연애 페이지')" value="연애" style="background-color:#edf108; border:#edf108; color:black;">
-                     <input class="tab" type="button" onclick="alert('회사 페이지')" value="회사" style="background-color:black">
-                     <input class="tab" type="button" onclick="alert('알바 페이지')" value="알바" style="background-color:black">
-                     <input class="tab" type="button" onclick="alert('10대 페이지')" value="10대" style="background-color:black">
-                     <button class="option" type="button" onclick="alert('검색버튼 클릭')"><img src="../src/search.png" alt="검색"></button>
-                     <button class="option" type="button" onclick="alert('설정 클릭')"><img src="../src/setting.png" alt="설정"></button>
+                     <input class="tab" type="button" onclick="location.href='/board/1'" value="캠퍼스" style="background-color:black">
+                     <input class="tab" type="button" onclick="location.href='/board/2'" value="연애" style="background-color:#edf108; border:#edf108; color:black;">
+                     <input class="tab" type="button" onclick="location.href='/board/3'" value="회사" style="background-color:black">
+                     <input class="tab" type="button" onclick="location.href='/board/4'" value="알바" style="background-color:black">
+                     <input class="tab" type="button" onclick="location.href='/board/5'" value="10대" style="background-color:black">
+                     <button class="option" type="button" onclick="location.href='/search' "><img src="../src/search.png" alt="검색"></button>
+                     <button class="option" type="button" onclick="location.href='/mypage'"><img src="../src/setting.png" alt="설정"></button>
                      <div class="update-title" >실시간 HOT</div>
                          <input class="title" type="button" value="<%= list[1].post_title %>" >
                       <div class="description">
@@ -52,17 +52,17 @@
                           <h4 class="reaction-title">+<%= list[1].post_scrap_number %></h4>
                      </div>
                      <div>
-                       <input class="tabs" type="button" onclick="alert('연애로 이동')" value="연애로 이동" style="background-color:#edf108; border:#edf108; color:black;"></a>
+                       <input class="tabs" type="button" onclick="location.href='/board/2'" value="연애로 이동" style="background-color:#edf108; border:#edf108; color:black;"></a>
                      </div>
                   </div>
                   <div class="swiper-slide">
-                       <input class="tab" type="button" onclick="alert('캠퍼스 페이지')" value="캠퍼스" style="background-color:black">
-                       <input class="tab" type="button" onclick="alert('연애 페이지')" value="연애" style="background-color:black">
-                       <input class="tab" type="button" onclick="alert('회사 페이지')" value="회사" style="background-color:#4cf82a; border:#4cf82a;color:black;">
-                       <input class="tab" type="button" onclick="alert('알바 페이지')" value="알바" style="background-color:black">
-                       <input class="tab" type="button" onclick="alert('10대 페이지')" value="10대" style="background-color:black">
-                       <button class="option" type="button" onclick="alert('검색버튼 클릭')"><img src="../src/search.png" alt="검색"></button>
-                       <button class="option" type="button" onclick="alert('설정 클릭')"><img src="../src/setting.png" alt="설정"></button>
+                       <input class="tab" type="button" onclick="location.href='/board/1'" value="캠퍼스" style="background-color:black">
+                       <input class="tab" type="button" onclick="location.href='/board/2'" value="연애" style="background-color:black">
+                       <input class="tab" type="button" onclick="location.href='/board/3'" value="회사" style="background-color:#4cf82a; border:#4cf82a;color:black;">
+                       <input class="tab" type="button" onclick="location.href='/board/4'" value="알바" style="background-color:black">
+                       <input class="tab" type="button" onclick="location.href='/board/5'" value="10대" style="background-color:black">
+                       <button class="option" type="button" onclick="location.href='/search' "><img src="../src/search.png" alt="검색"></button>
+                       <button class="option" type="button" onclick="location.href='/mypage'"><img src="../src/setting.png" alt="설정"></button>
                        <div class="update-title" >실시간 HOT</div>
                            <input class="title" type="button" value="<%= list[2].post_title %>" >
                         <div class="description">
@@ -72,17 +72,17 @@
                             <h4 class="reaction-title"> +<%= list[2].post_scrap_number %></h4>
                        </div>
                        <div>
-                         <input class="tabs" type="button" onclick="alert('회사로 이동')" value="회사로 이동" style="background-color:#4cf82a; border:#4cf82a;color:black;"></a>
+                         <input class="tabs" type="button" onclick="location.href='/board/3'" value="회사로 이동" style="background-color:#4cf82a; border:#4cf82a;color:black;"></a>
                        </div>
                     </div>
                     <div class="swiper-slide">
-                         <input class="tab" type="button" onclick="alert('캠퍼스 페이지')" value="캠퍼스" style="background-color:black">
-                         <input class="tab" type="button" onclick="alert('연애 페이지')" value="연애" style="background-color:black">
-                         <input class="tab" type="button" onclick="alert('회사 페이지')" value="회사" style="background-color:black">
-                         <input class="tab" type="button" onclick="alert('알바 페이지')" value="알바" style="background-color:orange; border:orange; color:black;">
-                         <input class="tab" type="button" onclick="alert('10대 페이지')" value="10대" style="background-color:black">
-                         <button class="option" type="button" onclick="alert('검색버튼 클릭')"><img src="../src/search.png" alt="검색"></button>
-                         <button class="option" type="button" onclick="alert('설정 클릭')"><img src="../src/setting.png" alt="설정"></button>
+                         <input class="tab" type="button" onclick="location.href='/board/1'" value="캠퍼스" style="background-color:black">
+                         <input class="tab" type="button" onclick="location.href='/board/2'" value="연애" style="background-color:black">
+                         <input class="tab" type="button" onclick="location.href='/board/3'" value="회사" style="background-color:black">
+                         <input class="tab" type="button" onclick="location.href='/board/4'" value="알바" style="background-color:orange; border:orange; color:black;">
+                         <input class="tab" type="button" onclick="location.href='/board/5'" value="10대" style="background-color:black">
+                         <button class="option" type="button" onclick="location.href='/search' "><img src="../src/search.png" alt="검색"></button>
+                         <button class="option" type="button" onclick="location.href='/mypage'"><img src="../src/setting.png" alt="설정"></button>
                          <div class="update-title" >실시간 HOT</div>
                              <input class="title" type="button" value="<%= list[3].post_title %>" >
                           <div class="description">
@@ -92,17 +92,17 @@
                               <h4 class="reaction-title"> +<%= list[3].post_scrap_number %></h4>
                          </div>
                          <div>
-                           <input class="tabs" type="button" onclick="alert('알바로 이동')" value="알바로 이동" style="background-color:orange; border:orange; color:black;"></a>
+                           <input class="tabs" type="button" onclick="location.href='/board/4'" value="알바로 이동" style="background-color:orange; border:orange; color:black;"></a>
                          </div>
                       </div>
                       <div class="swiper-slide">
-                        <input class="tab" type="button" onclick="alert('캠퍼스 페이지')" value="캠퍼스" style="background-color:black">
-                        <input class="tab" type="button" onclick="alert('연애 페이지')" value="연애" style="background-color:black">
-                        <input class="tab" type="button" onclick="alert('회사 페이지')" value="회사" style="background-color:black">
-                        <input class="tab" type="button" onclick="alert('알바 페이지')" value="알바" style="background-color:black;">
-                        <input class="tab" type="button" onclick="alert('10대 페이지')" value="10대" style="background-color:#81BEF7; border:#81BEF7; color:black;">
-                        <button class="option" type="button" onclick="alert('검색버튼 클릭')"><img src="../src/search.png" alt="검색"></button>
-                        <button class="option" type="button" onclick="alert('설정 클릭')"><img src="../src/setting.png" alt="설정"></button>
+                        <input class="tab" type="button" onclick="location.href='/board/1'" value="캠퍼스" style="background-color:black">
+                        <input class="tab" type="button" onclick="location.href='/board/2'" value="연애" style="background-color:black">
+                        <input class="tab" type="button" onclick="location.href='/board/3'" value="회사" style="background-color:black">
+                        <input class="tab" type="button" onclick="location.href='/board/4'" value="알바" style="background-color:black;">
+                        <input class="tab" type="button" onclick="location.href='/board/5'" value="10대" style="background-color:#81BEF7; border:#81BEF7; color:black;">
+                        <button class="option" type="button" onclick="location.href='/search' "><img src="../src/search.png" alt="검색"></button>
+                        <button class="option" type="button" onclick="location.href='/mypage'"><img src="../src/setting.png" alt="설정"></button>
                         <div class="update-title" >실시간 HOT</div>
                             <input class="title" type="button" value="<%= list[3].post_title %>" >
                          <div class="description">
@@ -112,7 +112,7 @@
                              <h4 class="reaction-title"> +<%= list[3].post_scrap_number %></h4>
                         </div>
                         <div>
-                          <input class="tabs" type="button" onclick="alert('알바로 이동')" value="알바로 이동" style="background-color:#81BEF7; border:#81BEF7; color:black;"></a>
+                          <input class="tabs" type="button" onclick="location.href='/board/5'" value="알바로 이동" style="background-color:#81BEF7; border:#81BEF7; color:black;"></a>
                         </div>
                      </div>
 
