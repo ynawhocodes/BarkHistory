@@ -16,7 +16,8 @@ app.use(session({
     secret: 'cotton candy',
     resave: false,
     saveUninitialized: true,
-    store: new FileStore()
+    store: new FileStore({ logFn: function() {} })
+
 }));
 
 //static
@@ -29,12 +30,11 @@ app.use('/', indexRouter);
 app.use('/auth', authRouter);
 app.use('/mypage', mypageRouter);
 app.use('/board', boardRouter);
-app.use('/campus', campusRouter);
 
 app.use(function(req, res, next) {
     res.status(404).send('Sorry cant find that!');
 });
-app.use(function (err, req, res, next) {
+app.use(function(err, req, res, next) {
     console.error(err.stack)
     res.status(500).send('Something broke!')
 });
