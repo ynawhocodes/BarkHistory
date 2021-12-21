@@ -11,7 +11,6 @@ var mypageRouter = require('./routes/mypage');
 var campusRouter = require('./routes/campus');
 var boardRouter = require('./routes/board');
 
-app.use(bodyParser.urlencoded({ extended: false }));
 app.use(session({
     secret: 'cotton candy',
     resave: false,

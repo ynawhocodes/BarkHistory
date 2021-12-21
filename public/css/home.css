@@ -1,75 +1,142 @@
-  .swiper-container {
-      width : 100%;
-      height : 100%;
-  }
+body {
+  background: #fff;
+  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  color: #000;
+  margin: 0;
+  padding: 0;
+}
 
-  .swiper-slide {
-    background-color : #fff;
-  }
+.container {
+  margin: 0 auto;
+  width: 100%;
+  /*padding: 0 0 10px 0;*/
 
-.tab {
-  color : white;
-  font-size : 17px;
+}
+
+.container button {
+  float: right;
+}
+
+.container-inner {
+  width: 1200px;
+  margin: 0 auto;
+  margin-top: 10px;
+  /* margin: 0 auto;*/
+  font-size: 18px;
+  font-weight: bold;
   text-align: center;
-  width : 180px;
-  height : 40px;
-  margin-left : 40px;
-  margin-right : 20px;
-  margin-top : 10px;
-  border-radius: 50px;
-}
-
-.option {
-    background-color: rgba(255,255,255,0.5);
-    border:rgba(255,255,255,0.5);
-    float : right;
-    margin-right : 10px;
 
 }
 
-.swiper-slide button {
-    margin-top : 10px;
-    background-color : #fff;
-    border-color : #fff;
+.hot {
+  width: 1200px;
+  padding: 10px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin: 0 auto;
+  font-size: 20px;
+  margin-top: 50px;
 }
 
-.update-title {
-  font-size : 20px;
-  margin-top : 300px;
-  margin-left : 500px;
-  font-weight : bold;
-  background-color: rgba(255,255,255,0.5);
-  border:rgba(255,255,255,0.5);
+.hot-post {
+  font-size: xx-large;
+  width: 100%;
+  padding: 0.5% 0 20px 0.5%;
 }
 
-.title {
-  font-size : 50px;
-  text-align : center;
-  background-color : #fff;
-  border-color : #fff;
-  margin-left : 600px;
-  font-weight : bold;
+.hot-post-title {
+  font-size: 20px;
+  margin: 0 auto;
+  width: 100%;
+  padding: 0.5% 0 20px 0.5%;
 }
 
-.description {
-  font-size : 20px;
-  margin-top : 20px;
-  text-align : center;
-  font-weight : bold;
+.hot-post-detail {
+  font-size: 17px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding: 0.5% 0 20px 0.5%;
+  margin: 0 auto;
 }
 
-.tabs {
-  font-size : 30px;
-  margin-left : 800px;
-  margin-top : 100px;
-  text-align : center;
-  font-weight : bold;
-  color : white;
-  padding: 15px 32px;
-  border-radius: 50px;
+.hot-post-roll {
+  font-size: 40px;
+  color: pink;
+  padding: 0.5% 0 20px 0.5%;
+  width: 100%;
+
 }
 
-.reaction {
-  float : right;
-  margin-right : 400px;
+.de {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+  padding: 0.5% 0 20px 0.5%;
+  white-space: nowrap;
+}
+
+
+.btn_1 {
+  margin: 0 15px;
+  font-size: 30px;
+  background-color: rgb(255, 0, 157);
+  border-radius: 30px;
+  text-align: center;
+  width: 300px;
+  height: 50px;
+  font-weight: bold;
+  font-family: 'Nanumgothic';
+  line-height: 150%;
+
+}
+
+.btn_2 {
+  margin: 0 15px;
+  font-size: 30px;
+  background-color: rgb(200, 255, 0);
+  border-radius: 30px;
+  text-align: center;
+  width: 300px;
+  font-weight: bold;
+  font-family: 'Nanumgothic';
+  line-height: 150%;
+}
+
+.btn_3 {
+  margin: 0 15px;
+  font-size: 30px;
+  background-color: rgb(255, 145, 0);
+  border-radius: 30px;
+  text-align: center;
+  width: 300px;
+  font-weight: bold;
+  font-family: 'Nanumgothic';
+  line-height: 150%;
+}
+
+.btn_4 {
+  margin: 0 15px;
+  font-size: 30px;
+  background-color: #8AFF53;
+  border-radius: 30px;
+  text-align: center;
+  width: 300px;
+  font-weight: bold;
+  font-family: 'Nanumgothic';
+  line-height: 150%;
+}
+
+.btn_5 {
+  margin: 0 15px;
+  font-size: 30px;
+  background-color: rgb(0, 110, 255);
+  border-radius: 30px;
+  text-align: center;
+  width: 300px;
+  font-weight: bold;
+  font-family: 'Nanumgothic';
+  line-height: 150%;
 }

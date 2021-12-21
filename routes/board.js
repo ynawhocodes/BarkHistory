@@ -33,20 +33,27 @@ router.post('/create_process', function(request, response) {
                 response.end();
                 return false;
             }
-            var post = request.body;
-            db.query(
-                `INSERT INTO post (post_title, post_date, post_detail, category_id, user_id) values(?, NOW(), ?,?,?)`, [post.post_title, post.post_detail, post.category, request.session.user_id],
-                function(error, result2) {
-                    if (error) {
-                        throw error;
+
+            var body = '';
+            request.on('data', function (data) {
+                body = body + data;
+            });
+            request.on('end', function () {
+                var post = qs.parse(body);
+                db.query(
+                    `INSERT INTO post (post_title, post_date, post_detail, category_id, user_id) values(?, NOW(), ?,?,?)`, [post.post_title, post.post_detail, post.category, request.session.user_id],
+                    function(error, result2) {
+                        if (error) {
+                            throw error;
+                        }
+                        response.writeHead(302, {
+                            //글 목록으로 이동
+                            Location: `/board/${post.category}`
+                        });
+                        response.end();
                     }
-                    response.writeHead(302, {
-                        //글 목록으로 이동
-                        Location: `/board/${post.category}`
-                    });
-                    response.end();
-                }
-            );
+                );
+            });            
         });
 });
 
@@ -97,12 +104,22 @@ router.get('/:category_id/:postId', function(request, response) {
                 if (error3) {
                     throw error3;
                 }
-                var postControl = template.postControl(true, request.params.postId, post)
-                var commentList = template.commentList(comments)
-                var reactionModal = template.reactionModal(request.params.postId, request.params.category_id)
-                var html = template.HTML(postControl, commentList, "", commentsCount[0].cmtcnt, reactionModal);
+                db.query(`SELECT user_name FROM post LEFT JOIN user ON post.user_id=user.user_id WHERE post_id=?`, [request.params.postId], function(error4, writer) {
+                    if (error4) {
+                        throw error4;
+                    }
+                    db.query(`SELECT * FROM comment INNER JOIN user ON comment.user_id=user.user_id`, function(error5, reviewers) {
+                        if (error5) {
+                            throw error5;
+                        }
+                        var postControl = template.postControl(true, request.params.category_id, request.params.postId, post, writer[0].user_name)
+                        var commentList = template.commentList(request.params.category_id, comments, reviewers[0].user_name)
+                        var reactionModal = template.reactionModal(request.params.postId, request.params.category_id)
+                        var html = template.HTML(postControl, commentList, "", commentsCount[0].cmtcnt, reactionModal);
 
-                return response.send(html)
+                        return response.send(html)
+                    });
+                });
             });
         });
     });
@@ -123,18 +140,21 @@ router.get('/:category_id/:postId/post_update', function(request, response) {
                 if (error3) {
                     throw error3;
                 }
-                var postControl = template.postFormControl(true, post);
+                db.query(`SELECT * FROM comment INNER JOIN user ON comment.user_id=user.user_id`, function(error5, reviewers) {
+                    if (error5) {
+                        throw error5;
+                    }
+                    var commentList = template.commentList(request.params.category_id, comments, reviewers[0].user_name)
+                    var postControl = template.postFormControl(true, request.params.category_id, request.params.postId, post);
+                    var reactionModal = template.reactionModal(request.params.postId, request.params.category_id)
+                    var html = template.HTML(postControl, commentList, "", commentsCount[0].cmtcnt, reactionModal);
 
-                var commentList = template.commentList(comments)
-                var reactionModal = template.reactionModal(request.params.postId, request.params.category_id)
-                var html = template.HTML(postControl, commentList, "", commentsCount[0].cmtcnt, reactionModal);
-
-                return response.send(html)
-            });
-        })
+                    return response.send(html)
+                });
+            })
+        });
     });
 });
-
 //글 수정 처리
 router.post('/:category_id/:postId/post_update_process', function(request, response) {
     var body = '';
@@ -186,9 +206,19 @@ router.get('/:category_id/:postId/comment_create', function(request, response) {
                 if (error3) {
                     throw error3;
                 }
-                var postControl = template.postControl(true, request.params.postId, post);
+                db.query(`SELECT user_name FROM post LEFT JOIN user ON post.user_id=user.user_id WHERE post_id=?`, [request.params.postId], function(error4, writer) {
+                    if (error4) {
+                        throw error4;
+                    }
+                    db.query(`SELECT * FROM comment INNER JOIN user ON comment.user_id=user.user_id`, function(error5, reviewers) {
 
-                var commentForm = `<form action="/board/comment_create_process" method="post">
+                        if (error5) {
+                            throw error4;
+                        }
+                        var postControl = template.postControl(true, request.params.category_id, request.params.postId, post, writer[0].user_name)
+                        var commentList = template.commentList(request.params.category_id, comments, reviewers[0].user_name)
+
+                        var commentForm = `<form action="/board/${request.params.category_id}/${request.params.postId}/comment_create_process" method="post">
                     <div class="comment-box" id="comment-box__setBgColor">
                         <div class="comment-box-top">
                             <div class="comment-box-top__info">
@@ -202,12 +232,14 @@ router.get('/:category_id/:postId/comment_create', function(request, response) {
                     </div>
                 </form>`
 
-                var commentList = template.commentList(comments)
-                var reactionModal = template.reactionModal(request.params.postId, request.params.category_id)
-                var html = template.HTML(postControl, commentList, commentForm, commentsCount[0].cmtcnt, reactionModal);
-                console.log(comments);
 
-                response.send(html)
+                        var reactionModal = template.reactionModal(request.params.postId, request.params.category_id)
+                        var html = template.HTML(postControl, commentList, commentForm, commentsCount[0].cmtcnt, reactionModal);
+                        console.log(comments);
+
+                        response.send(html)
+                    });
+                });
             });
         });
     });
@@ -223,13 +255,13 @@ router.post('/:category_id/:postId/comment_create_process', function(request, re
         var comment = qs.parse(body);
         console.log(comment);
         db.query(`INSERT INTO comment (comment_id, comment_detail, comment_date, user_id, emotion_id, post_id)
-VALUES(?, ?, NOW(), ?, ?, ?)`, [null, comment.comment, 1, 1, request.params.postId],
+VALUES(?, ?, NOW(), ?, ?, ?)`, [null, comment.comment, request.session.user_id, 1, request.params.postId],
+
             function(error, result) {
                 if (error) {
                     throw error;
                 }
-                console.log(`${request.baseUrl}/${request.params.postId}`)
-                response.redirect(`${request.baseUrl}/${request.params.postId}`);
+                response.redirect(`${request.baseUrl}/${request.params.category_id}/${request.params.postId}`);
                 response.end();
             }
         );
@@ -250,29 +282,39 @@ router.get('/:category_id/:postId/:commentId/comment_update', function(request, 
                 if (error3) {
                     throw error3;
                 }
-                var commentList = template.commentFormList(comments);
-                var postControl = template.postControl(true, request.params.postId, post);
-                console.log(request.params.commentId);
-                console.log(comments[request.params.commentId - 1]);
-                console.log(comments[request.params.commentId - 1]);
-                var commentForm = `<form action="/board/${request.params.postId}/${request.params.commentId}/comment_update_process" method="post">
-                    <div class="comment-box" id="comment-box__setBgColor">
-                        <div class="comment-box-top">
-                            <div class="comment-box-top__info">
-                                <span>익명</span>
-                                <span>2021-05-03</span>
+                db.query(`SELECT user_name FROM post LEFT JOIN user ON post.user_id=user.user_id WHERE post_id=?`, [request.params.postId], function(error4, writer) {
+                    if (error4) {
+                        throw error4;
+                    }
+                    db.query(`SELECT * FROM comment INNER JOIN user ON comment.user_id=user.user_id`, function(error5, reviewers) {
+
+                        if (error5) {
+                            throw error4;
+                        }
+                        var postControl = template.postControl(true, request.params.category_id, request.params.postId, post, writer[0].user_name)
+                        var commentList = template.commentList(request.params.category_id, comments, reviewers[0].user_name)
+
+                        var commentForm = `<form action="/board/${request.params.category_id}/${request.params.postId}/${request.params.commentId}/comment_update_process" method="post">
+                            <div class="comment-box" id="comment-box__setBgColor">
+                                <div class="comment-box-top">
+                                    <div class="comment-box-top__info">
+                                        <span>익명</span>
+                                        <span>2021-05-03</span>
+                                    </div>
+                                    <div class="comment-box-top__stuff">
+                                        <input type="submit" value="수정 완료">
+                                    </div>
+                                </div>
+                                
+                                <input type="hidden" name="id" value="${comments[request.params.commentId - 1].comment_id}">
+                                <input name="comment" value="${comments[request.params.commentId - 1].comment_detail}">
                             </div>
-                            <div class="comment-box-top__stuff">
-                                <input type="submit" value="수정 완료">
-                            </div>
-                        </div>
-                        <input type="hidden" name="id" value="${comments[request.params.commentId - 1].comment_id}">
-                        <input name="comment" value="${comments[request.params.commentId - 1].comment_detail}">
-                    </div>
-                </form>`
-                var reactionModal = template.reactionModal(request.params.postId, request.params.category_id);
-                var html = template.HTML(postControl, commentList, commentForm, commentsCount[0].cmtcnt, reactionModal);
-                return response.send(html)
+                        </form>`
+                        var reactionModal = template.reactionModal(request.params.postId, request.params.category_id);
+                        var html = template.HTML(postControl, commentList, commentForm, commentsCount[0].cmtcnt, reactionModal);
+                        return response.send(html)
+                    });
+                });
             });
         });
     });
@@ -292,7 +334,7 @@ router.post('/:category_id/:postId/:commentId/comment_update_process', function(
                 if (error) {
                     throw error;
                 }
-                response.redirect(`${request.baseUrl}/${request.params.postId}`)
+                response.redirect(`${request.baseUrl}/${request.params.category_id}/${request.params.postId}`)
                 response.end();
             }
         );
@@ -312,7 +354,7 @@ router.post('/:category_id/:postId/comment_delete_process', function(request, re
             if (error) {
                 throw error;
             }
-            response.redirect(`${request.baseUrl}/${request.params.postId}`);
+            response.redirect(`${request.baseUrl}/${request.params.category_id}/${request.params.postId}`);
             response.end();
         });
     });
@@ -320,7 +362,7 @@ router.post('/:category_id/:postId/comment_delete_process', function(request, re
 });
 
 //스크랩
-router.post('/:category_id/post_scrap_process', function(request, response) {
+router.post('/:category_id/:postId/post_scrap_process', function(request, response) {
     var body = '';
     request.on('data', function(data) {
         body = body + data;
@@ -329,12 +371,12 @@ router.post('/:category_id/post_scrap_process', function(request, response) {
         var post = qs.parse(body);
 
         db.query(`INSERT INTO scrap (user_id, post_id, category_id, scrap_date)
-VALUES(?, ?, ?, NOW())`, [1, post.scrap_post_id, 1, null],
+VALUES(?, ?, ?, NOW())`, [request.session.user_id, post.scrap_post_id, 1],
             function(error, result) {
                 if (error) {
                     throw error;
                 }
-                response.redirect(`${request.baseUrl}/${request.params.postId}`);
+                response.redirect(`${request.baseUrl}/${request.params.category_id}/${request.params.postId}`);
                 response.end();
             });
     });

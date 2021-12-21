@@ -1,24 +1,18 @@
 var express = require('express');
 var router = express.Router();
-var auth = require('../lib/auth');
+var db = require('../lib/db');
 
-//메인 페이지로 수정 필요. 로그인/회원 가입 주소 있으면 됨!
-router.get('/', function(request, response) {
-    
-    var template = `
-    <!doctype html>
-    <html>
-        <head>
-            <title>Main Page</title>
-            <meta charset="utf-8">
-        </head>
-        <body>
-            ${auth.statusUI(request, response)} 
-        </body>
-    </html>
-    
-    `;
-    response.send(template);
+router.get('/', function (request, response) {
+    // 실시간 인기글
+    db.query(`select post_title, post_detail, post_date, post_scrap_number from post where post_date between date_add(now(), interval -1 week)and now() and category_id=? order by post_emotion_number desc limit 1`,
+        [request.params.category_id],
+        function (error, result) {
+            if (error) {
+                throw error;
+            }
+            response.render('home.html', {
+                hot_post: result,
+            });
+        });
 });
-
-module.exports = router;
+module.exports=router;

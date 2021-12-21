@@ -19,7 +19,7 @@
 <body class="wrap">
     <div class="navigation">
         <div class="site-title">
-            흑흑역사
+            <a href="/">흑흑역사</a>
         </div>
         <div class="tab">
             <div class="swiper mySwiper">
@@ -32,15 +32,14 @@
             </div>
         </div>
         <div class="option">
-            <button type="button" onclick="alert('검색버튼 클릭')"><img src="../src/search.png" alt="검색"></button>
-            <button type="button" onclick="alert('설정 클릭')"><img src="../src/setting.png" alt="설정"></button>
+            <button type="button" onclick="location.href='/mypage'"><img src="../src/setting.png" alt="설정"></button>
         </div>
     </div>
                 
     <div class="myScrap-container">
         <% scrapList.forEach(function(list){ %>
             <div class="myScrap-box">
-                <a href="/<%= list.category_id %>/<%= list.post_id %>">
+                <a href="/board/<%= list.category_id %>/<%= list.post_id %>">
                     <div class="myScrap-date"><%= list.post_date %></div>
                     <div class="myScrap-title"><%= list.post_title %></div>
                     <div class="myScrap-emotionNum"><%= list.post_emotion_number %></div>
